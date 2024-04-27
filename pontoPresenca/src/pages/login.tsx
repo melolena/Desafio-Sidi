@@ -31,37 +31,43 @@ function login() {
           </div>{/*fim coluna login */}
           <div className="colunaCadastro">
             <h2>Criar Conta</h2>
-            <div id="icons">
+            <div id="social">
               <a href="#">
                <img src={iconFacebook} className="icon" />
               </a>
+              <a href="#">
+               <img src={iconsGmail} className="icon" />
+              </a>
+              <a href="#">
+               <img src={iconLinkedin} className="icon" />
+              </a>
             </div>
 
-            <div id="input-cadastro">
+            <div id="cadastro">
               <form id="formularioCadastro">
               <label htmlFor="setName">Nome Completo</label>
               <input
                 type="text"
-                id="setName"
+                className="input-cadastro"
                 placeholder="Digite seu nome completo"
               ></input>
+              <br></br>
               <label htmlFor="setEmail">E-mail</label>
               <input
                 type="email"
-                id="setEmail"
+                className="input-cadastro"
                 placeholder="Digite seu e-mail"
               ></input>
               <label htmlFor="setPassword">Senha</label>
               <div id="senha">
                 <input
-                  type={senhaEstaVisivel ? "text" : "password"}
-                  id="setPassword"
+                  className="input-cadastro"
                   placeholder="Digite sua senha"
                 />
                 <label htmlFor="setRepeatPassword">Confirma senha</label>
                 <input
                   type="password"
-                  id="setRepeatPassword"
+                  className="input-cadastro"
                   placeholder="Repita sua senha"
                 />
               </div>
