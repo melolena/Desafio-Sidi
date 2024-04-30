@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "../style/login.sass";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {AiOutlineFacebook} from 'react-icons/ai'
+import { AiOutlineGoogle } from "react-icons/ai";
+import { AiOutlineLinkedin } from "react-icons/ai";
 import logoSidi from "../assets/logo-sidi-nome.png";
-import iconFacebook from "../assets/maskFacebook.svg";
-import iconsGmail from "../assets/maskGoogle.svg";
-import iconLinkedin from "../assets/maskLinkedIn.svg";
-import iconSenhaVisivel from "../assets/maskShow.svg";
-import iconSenhaOculto from "../assets/maskHide.svg";
+
 
 function login() {
   const [senhaEstaVisivel, escreverSenhaVisivel] = useState(false);
@@ -13,6 +13,8 @@ function login() {
   const tornarSenhaVisivel = () => {
     escreverSenhaVisivel(!senhaEstaVisivel);
   };
+
+  
 
   return (
     <>
@@ -33,13 +35,13 @@ function login() {
             <h2>Criar Conta</h2>
             <div id="social">
               <a href="#">
-               <img src={iconFacebook} className="icon" />
+               <AiOutlineFacebook/>
+              </a>
+              <a href="#" >
+                <AiOutlineGoogle id="iconGoogle" />
               </a>
               <a href="#">
-               <img src={iconsGmail} className="icon" />
-              </a>
-              <a href="#">
-               <img src={iconLinkedin} className="icon" />
+                <AiOutlineLinkedin />
               </a>
             </div>
 
