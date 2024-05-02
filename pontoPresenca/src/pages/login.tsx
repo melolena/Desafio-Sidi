@@ -63,6 +63,7 @@ function login() {
               <label htmlFor="setPassword">Senha</label>
               <div id="senha">
                 <input
+                type="password"
                   className="input-cadastro"
                   placeholder="Digite sua senha"
                 />
