@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './pages/login.tsx'
-import './index.sass'
+import './styles/style.sass'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
