@@ -5,11 +5,16 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
+import Modal from "../components/Modal.tsx";
+
+
 import '../styles/style.sass'
 
 function App() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [show, setShow] = useState(false);
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -17,6 +22,7 @@ function App() {
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
+
 
 
   return (
@@ -29,7 +35,7 @@ function App() {
         <div className = "textosCadastros">
           <h2>Seja Bem-Vindo</h2>
           <p>Vamos começar? Faça login para fazer<br></br> seu check-in diário!</p>
-          <a href="#"> Esqueci minha senha</a>
+           <Modal/>
         </div>
         <button id="entrar">Entrar</button>
       </div>
