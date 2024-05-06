@@ -109,6 +109,7 @@ const toggleEnviarNormal = (event) => {
 export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   const [childModalOpen, setChildModalOpen] = React.useState(false);
+  const [isValidEmail, setIsValidEmail] = React.useState(true);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -122,6 +123,8 @@ export default function BasicModal() {
     setChildModalOpen(false);
     handleOpen();
   };
+
+  
 
   return (
     <div>
