@@ -26,18 +26,19 @@ const header = {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'start',
-  marginBottom: '20px',
+  margin: '10px',
 };
 
 const logoStyle = {
   width: '30%',
   alignSelf: 'start',
-  marginRight: '10px',
+  marginRight: '0px',
 };
 
 const titulo = {
   textAlign: 'center',
   margin: '10px',
+  marginLeft: '20px',
 };
 
 const corpo = {
@@ -50,7 +51,7 @@ const inserirEmail = {
   display: 'flex',
   flexDirection: 'column',
   marginBottom: '30px',
-  marginTop: '10px',
+  marginTop: '5px',
 };
 
 const labelEmail = {
@@ -96,6 +97,51 @@ const botaoEnviar = {
   textAlign: 'center',
 };
 
+const styleChild = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'space-between',
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  height: 200,
+  bgcolor: '#ffffff',
+  borderColor: '#ffffff',
+  borderRadius: '20px',
+  boxShadow: 24,
+  p: 4,
+  fontFamily: 'Josefin Sans',
+};
+
+const corpoChild = {
+  textAlign: 'center',
+  marginTop: '25px',
+  marginBottom: '20px',
+  color: '#000000',
+};
+
+const botoesChild = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  margin: '10px 0',
+};
+
+const botaoVoltarChild = {
+  backgroundColor: '#C74949',
+  fontFamily: 'Josefin Sans',
+  alignSelf:'center',
+  color: '#FFFFFF',
+  padding: '8px 20px',
+  border: 'none',
+  borderRadius: '10px',
+  marginTop:'30px',
+  textAlign: 'center',
+};
+
 const toggleEnviarHover = (event) => {
   event.target.style.backgroundColor = '#3FD48F';
   event.target.style.color = '#FFFFFF';
@@ -106,10 +152,11 @@ const toggleEnviarNormal = (event) => {
   event.target.style.color = '#777777';
 };
 
-export default function BasicModal() {
+export default function ModalRecuperacaoSenha() {
   const [open, setOpen] = React.useState(false);
   const [childModalOpen, setChildModalOpen] = React.useState(false);
   const [isValidEmail, setIsValidEmail] = React.useState(true);
+  const [email, setEmail] = React.useState('');
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -121,7 +168,15 @@ export default function BasicModal() {
 
   const handleCloseChildModal = () => {
     setChildModalOpen(false);
-    handleOpen();
+    setOpen(false); 
+  };
+
+  const handleChangeEmail = (event) => {
+    const emailValue = event.target.value;
+    setEmail(emailValue);
+    // Lógica de validação de e-mail
+    const isValid = /\S+@\S+\.\S+/.test(emailValue);
+    setIsValidEmail(isValid);
   };
 
   
@@ -143,7 +198,7 @@ export default function BasicModal() {
           <p style={corpo}>Insira seu e-mail para a recuperação de sua conta </p>
           <div id="inputModal" style={inserirEmail}>
             <label style={labelEmail}>Email</label>
-            <input style={inputEmail} type="email" id="email" placeholder="Digite seu email" />
+            <input style={inputEmail} type="email" id="email" placeholder="Digite seu email" onChange={handleChangeEmail} />
           </div>
           <div style={botoes}>
             <button id="voltar" onClick={handleClose} style={botaoVoltar}>
@@ -169,14 +224,14 @@ export default function BasicModal() {
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={styleChild}>
           <div style={header}>
             <img src={logoSidi} style={logoStyle} />
             <h2 style={titulo}>Recuperar Conta</h2>
           </div>
-          <p style={corpo}>Uma mensagem foi enviada para o seu e-mail. Siga o passo a passo para recuperação da sua conta.</p>
-          <div style={botoes}>
-            <button id="voltar" onClick={handleCloseChildModal} style={botaoVoltar}>
+          <p style={corpoChild}>Uma mensagem foi enviada para o seu e-mail. Siga o passo a passo para recuperação da sua conta.</p>
+          <div style={botoesChild}>
+            <button id="voltar" onClick={handleCloseChildModal} style={botaoVoltarChild}>
               Voltar
             </button>
           </div>

@@ -1,16 +1,16 @@
 import { useState } from 'react'
-import logoSidi from '../assets/logo-sidi-nome.png'
+import logoSidi from '../../assets/logo-sidi-nome.png';
 import {AiOutlineFacebook} from 'react-icons/ai'
 import { AiOutlineGoogle } from "react-icons/ai";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
-import Modal from "../components/Modal.tsx";
+import ModalRecuperacaoSenha from "../../components/ModalRecuperacaoSenha.tsx";
+import ModalLogin from "../../components/ModalLogin.tsx";
 
+import './style.sass'
 
-import '../styles/style.sass'
-
-function App() {
+function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [show, setShow] = useState(false);
@@ -35,20 +35,20 @@ function App() {
         <div className = "textosCadastros">
           <h2>Seja Bem-Vindo</h2>
           <p>Vamos começar? Faça login para fazer<br></br> seu check-in diário!</p>
-           <Modal/>
+           <ModalRecuperacaoSenha/>
         </div>
-        <button id="entrar">Entrar</button>
+        <ModalLogin/>
       </div>
       <div className="cadastro">
         <h2>Criar Conta</h2>
         <div id="social">
-          <a href="#">
+          <a href="https://www.facebook.com/login">
             <AiOutlineFacebook/>
           </a>
-          <a href="#" id="iconGoogle">
+          <a href="https://www.facebook.com/login" id="iconGoogle">
             <AiOutlineGoogle/>
           </a>
-          <a href="#">
+          <a href="https://www.linkedin.com/login">
             <AiOutlineLinkedin/>
           </a>
         </div>
@@ -95,4 +95,4 @@ function App() {
   )
 }
 
-export default App
+export default Login;
