@@ -9,6 +9,7 @@ import ModalRecuperacaoSenha from "../../components/ModalRecuperacaoSenha.tsx";
 import ModalLogin from "../../components/ModalLogin.tsx";
 
 import './style.sass'
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -88,7 +89,9 @@ function Login() {
               </div>
             </div>
         </div>
+        <Link to="/home">
         <button id="continuar-cadastro">Continuar</button>
+        </Link>
       </div>
     </div>
     </>
