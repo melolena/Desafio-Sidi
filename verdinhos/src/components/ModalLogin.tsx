@@ -114,19 +114,19 @@ const senhaIcon = {
 const toggleEnviarHover = (event) => {
   event.target.style.backgroundColor = '#3FD48F';
   event.target.style.color = '#FFFFFF';
+
 };
 
 const toggleEnviarNormal = (event) => {
   event.target.style.backgroundColor = '#D9D9D9';
   event.target.style.color = '#777777';
+  event.target.style.transition = 'background-color 0.3s, color 0.3s';
 };
 
 export default function ModalLogin() {
   const [open, setOpen] = React.useState(false);
   const [isValidEmail, setIsValidEmail] = React.useState(true);
-  const [email, setEmail] = React.useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [redirectToDashboard, setRedirectToDashboard] = useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

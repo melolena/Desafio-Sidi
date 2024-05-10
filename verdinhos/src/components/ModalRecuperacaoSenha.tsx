@@ -145,6 +145,7 @@ const botaoVoltarChild = {
 const toggleEnviarHover = (event) => {
   event.target.style.backgroundColor = '#3FD48F';
   event.target.style.color = '#FFFFFF';
+  event.target.style.transition = 'background-color 0.3s, color 0.3s';
 };
 
 const toggleEnviarNormal = (event) => {
