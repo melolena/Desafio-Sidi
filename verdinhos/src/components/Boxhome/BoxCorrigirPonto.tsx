@@ -1,20 +1,20 @@
 import Box from '@mui/material/Box';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import './styleBox.sass';
-import MaskJustificaPonto from '../MaskJustificaPonto';
+import MaskCorrigirPonto from '../MaskCorrigirPonto';
 
-function BoxJustificaPonto(){
+function BoxCorrigirPonto(){
     return(
         <Box>
             <div className="boxHome">
                 <div className="tituloBoxHome">
-                    <h2>Justificar Ponto</h2>
+                    <h2>Corrigir Ponto</h2>
                     <IoIosCheckmarkCircleOutline/>
                 </div>
-            <MaskJustificaPonto/>
+            <MaskCorrigirPonto/>
             </div>
         </Box>
     );
 }
 
-export default BoxJustificaPonto;
+export default BoxCorrigirPonto;

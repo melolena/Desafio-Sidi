@@ -9,6 +9,9 @@ import { Link } from 'react-router-dom';
 
 import './style.sass';
 import BoxBaterPonto from '../../components/Boxhome/BoxBaterPonto';
+import BoxJustificaPonto from '../../components/Boxhome/BoxJustificarPonto';
+import BoxCorrigirPonto from '../../components/Boxhome/BoxCorrigirPonto';
+import BoxMinhaLocalizacao from '../../components/Boxhome/BoxMinhaLocalizacao';
 
 function Home() {
 
@@ -45,18 +48,29 @@ function Home() {
       </div>
       <div id="bodyHome">
        <div className="linhaHome">
-       <div className="unidadeDashboard">
-        <Link to="" style={{textDecoration: "none"}}>
-            <BoxBaterPonto/>
-          </Link>
-        </div>
         <div className="unidadeDashboard">
           <Link to="" style={{textDecoration: "none"}}>
-            <BoxBaterPonto/>
-          </Link>
-        </div>
+              <BoxBaterPonto/>
+            </Link>
+          </div>
+          <div className="unidadeDashboard">
+            <Link to="" style={{textDecoration: "none"}}>
+              <BoxJustificaPonto/>
+            </Link>
+          </div>
        </div>
-
+       <div className="linhaHome">
+        <div className="unidadeDashboard">
+            <Link to="" style={{textDecoration: "none"}}>
+              <BoxCorrigirPonto/>
+            </Link>
+          </div>
+          <div className="unidadeDashboard">
+            <Link to="" style={{textDecoration: "none"}}>
+              <BoxMinhaLocalizacao/>
+            </Link>
+          </div>
+       </div>
       </div>
     </div>
   );
