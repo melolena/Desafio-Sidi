@@ -16,7 +16,7 @@ function Home() {
       <div id="bodyHome">
        <div className="linhaHome">
         <div className="unidadeDashboard">
-          <Link to="/bater-ponto" style={{textDecoration: "none"}}>
+          <Link to="/baterponto" style={{textDecoration: "none"}}>
               <BoxBaterPonto/>
             </Link>
           </div>
