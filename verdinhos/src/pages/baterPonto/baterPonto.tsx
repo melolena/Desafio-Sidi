@@ -6,6 +6,7 @@ import { IoIosArrowDropleft } from "react-icons/io";
 import { Link } from 'react-router-dom';
 
 
+
 function BaterPonto(){
     return(
         <div className="baterPonto">
