@@ -4,9 +4,11 @@ import Header from "../../components/Header";
 import "./styleBP.sass";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { GiEntryDoor } from "react-icons/gi";
+import { GiExitDoor } from "react-icons/gi";
+import { FaCoffee } from "react-icons/fa";
+import { MdHistory } from "react-icons/md";
 
 function BaterPonto() {
   const [showBaterPonto, setShowBaterPonto] = useState(false);
@@ -35,25 +37,28 @@ function BaterPonto() {
           <Calendario onDayClick={handleDayClick} />
         </div>
         {showBaterPonto && (
-          <Box ml={4} p={2} border="1px solid purple" borderRadius="8px">
-            <Typography variant="h5" gutterBottom>
-              Bater Ponto
-            </Typography>
-            <Box display="flex" flexDirection="column" gap={2}>
-              <Button variant="outlined" onClick={() => handlePonto('Entrada')}>
-                Entrada
-              </Button>
-              <Button variant="outlined" onClick={() => handlePonto('Saída')}>
-                Saída
-              </Button>
-              <Button variant="outlined" onClick={() => handlePonto('Pausa')}>
-                Pausa
-              </Button>
-              <Button variant="outlined" onClick={() => handlePonto('Histórico')}>
-                Histórico
-              </Button>
-            </Box>
-          </Box>
+          <div id="menuPonto">
+            <h2>Bater Ponto</h2>
+            <div id='botoesPonto'>
+              <div className="organizacaoBotoes">
+                <Button variant="contained" startIcon={<GiEntryDoor/>} onClick={() => handlePonto("Entrada")}>
+                  Entrada
+                </Button>
+                <Button variant="contained" startIcon = {<GiExitDoor/>} onClick={() => handlePonto("Saida")}>
+                  Saida
+                </Button>
+              </div>
+              <div className="organizacaoBotoes">
+                <Button variant="contained" startIcon= {<FaCoffee/>} onClick={() => handlePonto("Pausa")}>
+                  Pausa
+                </Button>
+                <Button variant="contained" startIcon = {<MdHistory/>} onClick={() => handlePonto("Histórico")}>
+                  Histórico
+                </Button>
+              </div>
+            </div>
+          </div>
+            
         )}
       </div>
     </div>
