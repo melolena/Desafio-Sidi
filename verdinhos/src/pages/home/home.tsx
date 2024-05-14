@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import './style.sass';
+import './styleHome.sass';
 import BoxBaterPonto from '../../components/Boxhome/BoxBaterPonto';
 import BoxJustificaPonto from '../../components/Boxhome/BoxJustificarPonto';
 import BoxCorrigirPonto from '../../components/Boxhome/BoxCorrigirPonto';

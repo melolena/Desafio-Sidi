@@ -5,7 +5,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { BiSupport } from "react-icons/bi";
 import { IoIosLogOut } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import '../pages/home/style.sass'
+import '../pages/home/styleHome.sass'
 
 function Header() {
   return (
