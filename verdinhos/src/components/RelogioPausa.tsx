@@ -1,21 +1,29 @@
-import * as React from 'react';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import React from 'react';
+import { useTime } from 'react-timer-hook';
 
-function RelogioPausa({ onConfirm }) {
-  const handleConfirm = (selectedTime) => {
-    onConfirm(selectedTime);
-  };
+function RelogioPausa() {
+  const {
+    seconds,
+    minutes,
+    hours,
+    ampm,
+  } = useTime({ format: '12-hour'});
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['TimePicker']}>
-        <TimePicker label="" onAccept={handleConfirm} />
-      </DemoContainer>
-    </LocalizationProvider>
+    <div style={{textAlign: 'center'}}>
+      <h1>react-timer-hook </h1>
+      <p>Current Time Demo</p>
+      <div style={{fontSize: '100px'}}>
+        <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span><span>{ampm}</span>
+      </div>
+    </div>
   );
 }
 
-export default RelogioPausa;
+export default function App() {
+  return (
+    <div>
+      <MyTime />
+    </div>
+  );
+}

@@ -11,6 +11,7 @@ import { FaCoffee } from "react-icons/fa";
 import { MdHistory } from "react-icons/md";
 import dayjs from 'dayjs';
 import RelogioPausa from '../../components/RelogioPausa';
+import { SingleInputTimeRangeField } from '@mui/x-date-pickers-pro/SingleInputTimeRangeField';
 
 function BaterPonto() {
   const [showBaterPonto, setShowBaterPonto] = useState(false);
@@ -19,11 +20,8 @@ function BaterPonto() {
   const [showConfirmarSaida, setShowConfirmarSaida] = useState(false);
   const [showSaidaBox, setShowSaidaBox] = useState(false);
   const [showPausaBox, setShowPausaBox] = useState(false);
-  const [showConfirmarPausa, setShowConfirmarPausa] = useState(false);
   const [selectedDay, setSelectedDay] = useState(dayjs());
   const [currentTime, setCurrentTime] = useState(dayjs());  
-  const [pausaEndTime, setPausaEndTime] = useState(dayjs());
-  const [mensagemPausa, setMensagemPausa] = useState('');
 
   useEffect(() => {
     setShowBaterPonto(true);
@@ -112,24 +110,8 @@ function BaterPonto() {
     setShowSaidaBox(false);
   };
 
-  const handleConfirmarPausaFinal = () =>{
-    setShowConfirmarPausa(true);
-    setShowPausaBox(false);
-    setShowConfirmarEntrada(false);
-    setShowBaterPonto(false);
-    setShowEntradaBox(false);
-    setShowSaidaBox(false);
-    setShowConfirmarSaida(false);
-    setShowSaidaBox(false);
-  };
-
-  const handleConfirmarPausa = (endTime) => {
-    setPausaEndTime(endTime);
-    setShowPausaBox(false);
-    const intervaloMinutos = endTime.diff(currentTime, 'minute');
-    const mensagemPausa = `Tudo pronto! Sua pausa da data ${selectedDay.format('DD/MM/YYYY')}, no horário ${currentTime.format('HH:mm')} e com intervalo de ${intervaloMinutos} minutos foi realizada com sucesso!`;
-    setMensagemPausa(mensagemPausa);
-  };
+ 
+ 
 
   return (
     <div className="baterPonto">
@@ -238,12 +220,8 @@ function BaterPonto() {
           </div>
           <div id="horarioFinal">
             <p>Defina o horário de término do intevalo</p>
-            <RelogioPausa/>
           </div>
           <div className="BotoesComponentesMenu"> 
-            <Button onClick={handleConfirmarPausaFinal}>
-              Confirmar
-            </Button>
             <Button onClick={handleVoltar}>
               Voltar
             </Button>
