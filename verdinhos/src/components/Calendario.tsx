@@ -4,6 +4,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar, PickersDay, pickersDayClasses } from '@mui/x-date-pickers';
 import { ptBR } from '@mui/x-date-pickers/locales';
+import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 import '../pages/baterPonto/styleBP.sass';
 
@@ -41,13 +42,15 @@ const ServerDay = (props) => {
   );
 };
 
-export default function Calendario({ onDayClick }) {
+export default function Calendario({ onDayClick, selectedDay }) {
   return (
     <LocalizationProvider 
       dateAdapter={AdapterDayjs} 
       localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}
     >
       <DateCalendar
+        value={selectedDay}
+        onChange={onDayClick}
         slots={{ day: ServerDay }}
         slotProps={{ day: { onDayClick } }}
         sx={{
