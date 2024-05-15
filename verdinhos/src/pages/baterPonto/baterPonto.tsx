@@ -24,7 +24,8 @@ function BaterPonto() {
   const handleDayClick = (day) => {
     setSelectedDay(day);
     setShowBaterPonto(true);
-    setShowEntradaBox(false); 
+    setShowEntradaBox(false);
+    setShowConfirmar(false); 
   };
 
   const handlePonto = (tipo) => {
