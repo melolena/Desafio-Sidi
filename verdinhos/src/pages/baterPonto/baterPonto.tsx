@@ -10,8 +10,6 @@ import { GiExitDoor } from "react-icons/gi";
 import { FaCoffee } from "react-icons/fa";
 import { MdHistory } from "react-icons/md";
 import dayjs from 'dayjs';
-import RelogioPausa from '../../components/RelogioPausa';
-import { SingleInputTimeRangeField } from '@mui/x-date-pickers-pro/SingleInputTimeRangeField';
 
 function BaterPonto() {
   const [showBaterPonto, setShowBaterPonto] = useState(false);
@@ -116,18 +114,18 @@ function BaterPonto() {
   return (
     <div className="baterPonto">
       <Header />
-      <div id="botaoVoltar">
+      <div className="botaoVoltar">
         <Link to="/home">
           <IoIosArrowBack />
         </Link>
       </div>
-      <div id="bodyBaterPonto">
-        <div id="calendario">
-          <h2>2024</h2>
+      <div className="bodyBaterPonto">
+        <div className="calendario">
+          <h2>{selectedDay.format('YYYY')}</h2>
           <Calendario onDayClick={handleDayClick} selectedDay={selectedDay} />
         </div>
         {showBaterPonto && (
-          <div id="menuPonto">
+          <div className="menuPonto">
             <h2>Bater Ponto</h2>
             <div id='botoesPonto'>
               <div className="organizacaoBotoes">

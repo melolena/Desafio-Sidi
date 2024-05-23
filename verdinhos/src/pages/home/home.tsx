@@ -28,7 +28,7 @@ function Home() {
        </div>
        <div className="linhaHome">
         <div className="unidadeDashboard">
-            <Link to="" style={{textDecoration: "none"}}>
+            <Link to="/corrigirponto" style={{textDecoration: "none"}}>
               <BoxCorrigirPonto/>
             </Link>
           </div>
