@@ -1,101 +1,129 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { AiOutlineFacebook, AiOutlineGoogle, AiOutlineLinkedin, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import logoSidi from '../../assets/logo-sidi-nome.png';
-import {AiOutlineFacebook} from 'react-icons/ai'
-import { AiOutlineGoogle } from "react-icons/ai";
-import { AiOutlineLinkedin } from "react-icons/ai";
-import { AiOutlineEye } from "react-icons/ai";
-import { AiOutlineEyeInvisible } from "react-icons/ai";
-import ModalRecuperacaoSenha from "../../components/ModalRecuperacaoSenha.tsx";
-import ModalLogin from "../../components/ModalLogin.tsx";
-
-import './style.sass'
-import { Link } from 'react-router-dom';
+import ModalRecuperacaoSenha from "../../components/ModalRecuperacaoSenha";
+import ModalLogin from "../../components/ModalLogin";
+import './style.sass';
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [show, setShow] = useState(false);
+  const [nomeCompleto, setNomeCompleto] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [confirmarSenha, setConfirmarSenha] = useState('');
+  const [errors, setErrors] = useState({});
+  const history = useHistory();
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const HOME_ROUTE = '/home'; // Constante com o caminho de redirecionamento
+
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!nomeCompleto) newErrors.nomeCompleto = 'Nome Completo é obrigatório';
+    if (!email) newErrors.email = 'Email é obrigatório';
+    if (!senha) newErrors.senha = 'Senha é obrigatória';
+    if (senha !== confirmarSenha) newErrors.confirmarSenha = 'As senhas não coincidem';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (validateForm()) {
+      history.push(HOME_ROUTE);
+    }
   };
-
-
 
   return (
-    <>
     <div className="bodyApp">
       <div className="login">
-        <a href ="https://www.sidi.org.br/" id="campoLogo">
-          <img src={logoSidi} id= "logo"/>
+        <a href="https://www.sidi.org.br/" id="campoLogo">
+          <img src={logoSidi} id="logo" />
         </a>
-        <div className = "textosCadastros">
+        <div className="textosCadastros">
           <h2>Seja Bem-Vindo</h2>
-          <p>Vamos começar? Faça login para fazer<br></br> seu check-in diário!</p>
-           <ModalRecuperacaoSenha/>
+          <p>Vamos começar? Faça login para fazer<br /> seu check-in diário!</p>
+          <ModalRecuperacaoSenha />
         </div>
-        <ModalLogin/>
+        <ModalLogin />
       </div>
       <div className="cadastro">
         <h2>Criar Conta</h2>
         <div id="social">
           <a href="https://www.facebook.com/login">
-            <AiOutlineFacebook/>
+            <AiOutlineFacebook />
           </a>
-          <a href="https://www.facebook.com/login" id="iconGoogle">
-            <AiOutlineGoogle/>
+          <a href="https://www.google.com/login" id="iconGoogle">
+            <AiOutlineGoogle />
           </a>
           <a href="https://www.linkedin.com/login">
-            <AiOutlineLinkedin/>
+            <AiOutlineLinkedin />
           </a>
         </div>
-        <div id="formCadastro">
+        <form id="formCadastro" onSubmit={handleSubmit}>
           <div className="inputCadastro">
-          <label form='nomeCompleto'>Nome Completo</label>
-          <input type="text" id="nomeCompleto" placeholder="Digite seu nome completo"></input>
+            <label htmlFor="nomeCompleto">Nome Completo</label>
+            <input
+              type="text"
+              id="nomeCompleto"
+              placeholder="Digite seu nome completo"
+              value={nomeCompleto}
+              onChange={(e) => setNomeCompleto(e.target.value)}
+            />
+            {errors.nomeCompleto && <span className="error">{errors.nomeCompleto}</span>}
           </div>
           <div className="inputCadastro">
-            <label>Email</label>
-            <input type="e-mail" id="email" placeholder="Digite seu email"></input>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Digite seu email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {errors.email && <span className="error">{errors.email}</span>}
           </div>
           <div className="inputCadastro">
-              <label htmlFor="senha">Senha</label>
-              <div className="password-input">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="senha"
-                  placeholder="Digite sua senha"
-                />
-                <span className="password-toggle" onClick={togglePasswordVisibility}>
-                  {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-                </span>
-              </div>
+            <label htmlFor="senha">Senha</label>
+            <div className="password-input">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="senha"
+                placeholder="Digite sua senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+              />
+              <span className="password-toggle" onClick={togglePasswordVisibility}>
+                {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+              </span>
             </div>
-            <div className="inputCadastro">
-              <label htmlFor="confirmarSenha">Confirmar Senha</label>
-              <div className="password-input">
-                <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  id="confirmarSenha"
-                  placeholder="Confirme sua senha "
-                />
-                <span className="password-toggle" onClick={toggleConfirmPasswordVisibility}>
-                  {showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-                </span>
-              </div>
+            {errors.senha && <span className="error">{errors.senha}</span>}
+          </div>
+          <div className="inputCadastro">
+            <label htmlFor="confirmarSenha">Confirmar Senha</label>
+            <div className="password-input">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                id="confirmarSenha"
+                placeholder="Confirme sua senha"
+                value={confirmarSenha}
+                onChange={(e) => setConfirmarSenha(e.target.value)}
+              />
+              <span className="password-toggle" onClick={toggleConfirmPasswordVisibility}>
+                {showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+              </span>
             </div>
-        </div>
-        <Link to="/home">
-        <button id="continuar-cadastro">Continuar</button>
-        </Link>
+            {errors.confirmarSenha && <span className="error">{errors.confirmarSenha}</span>}
+          </div>
+          <button type="submit" id="continuar-cadastro">Continuar</button>
+        </form>
       </div>
     </div>
-    </>
-  )
+  );
 }
 
 export default Login;

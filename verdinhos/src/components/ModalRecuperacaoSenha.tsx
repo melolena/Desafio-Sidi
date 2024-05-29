@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import logoSidi from '../assets/logo-sidi-nome.png';
+import '../pages/login/style.sass';
 
 const style = {
   display: 'flex',
@@ -97,51 +98,6 @@ const botaoEnviar = {
   textAlign: 'center',
 };
 
-const styleChild = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'space-between',
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  height: 200,
-  bgcolor: '#ffffff',
-  borderColor: '#ffffff',
-  borderRadius: '20px',
-  boxShadow: 24,
-  p: 4,
-  fontFamily: 'Josefin Sans',
-};
-
-const corpoChild = {
-  textAlign: 'center',
-  marginTop: '25px',
-  marginBottom: '20px',
-  color: '#000000',
-};
-
-const botoesChild = {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  margin: '10px 0',
-};
-
-const botaoVoltarChild = {
-  backgroundColor: '#C74949',
-  fontFamily: 'Josefin Sans',
-  alignSelf:'center',
-  color: '#FFFFFF',
-  padding: '8px 20px',
-  border: 'none',
-  borderRadius: '10px',
-  marginTop:'30px',
-  textAlign: 'center',
-};
-
 const toggleEnviarHover = (event) => {
   event.target.style.backgroundColor = '#3FD48F';
   event.target.style.color = '#FFFFFF';
@@ -175,12 +131,9 @@ export default function ModalRecuperacaoSenha() {
   const handleChangeEmail = (event) => {
     const emailValue = event.target.value;
     setEmail(emailValue);
-    // Lógica de validação de e-mail
     const isValid = /\S+@\S+\.\S+/.test(emailValue);
     setIsValidEmail(isValid);
   };
-
-  
 
   return (
     <div>
@@ -208,31 +161,26 @@ export default function ModalRecuperacaoSenha() {
             <button
               id="enviar"
               style={botaoEnviar}
-              onMouseEnter={toggleEnviarHover}
-              onMouseLeave={toggleEnviarNormal}
-              onClick={handleOpenChildModal}
+              onMouseOver={isValidEmail ? toggleEnviarHover : null}
+              onMouseOut={isValidEmail ? toggleEnviarNormal : null}
+              onClick={isValidEmail ? handleOpenChildModal : null}
             >
               Enviar
             </button>
           </div>
         </Box>
       </Modal>
-
-      {/* Modal Secundário (Child Modal) */}
       <Modal
         open={childModalOpen}
         onClose={handleCloseChildModal}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
-        <Box sx={styleChild}>
-          <div style={header}>
-            <img src={logoSidi} style={logoStyle} />
-            <h2 style={titulo}>Recuperar Conta</h2>
-          </div>
-          <p style={corpoChild}>Uma mensagem foi enviada para o seu e-mail. Siga o passo a passo para recuperação da sua conta.</p>
-          <div style={botoesChild}>
-            <button id="voltar" onClick={handleCloseChildModal} style={botaoVoltarChild}>
+        <Box sx={style}>
+          <h2 style={titulo}>Recuperação de senha enviada</h2>
+          <p style={corpo}>A recuperação de senha foi enviada para o e-mail {email}</p>
+          <div style={botoes}>
+            <button id="voltar" onClick={handleCloseChildModal} style={botaoVoltar}>
               Voltar
             </button>
           </div>

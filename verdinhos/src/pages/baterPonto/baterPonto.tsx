@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// BaterPonto.js
+import React, { useState, useEffect, useContext } from 'react';
 import Calendario from "../../components/Calendario";
 import Header from "../../components/Header";
 import "./styleBP.sass";
@@ -8,8 +9,10 @@ import Button from '@mui/material/Button';
 import { GiEntryDoor, GiExitDoor } from "react-icons/gi";
 import { MdHistory } from "react-icons/md";
 import dayjs from 'dayjs';
+import HistoryContext from '../../components/HistoryContext';
 
 function BaterPonto() {
+  const { history, addPonto } = useContext(HistoryContext);
   const [showBaterPonto, setShowBaterPonto] = useState(false);
   const [showEntradaBox, setShowEntradaBox] = useState(false);
   const [showConfirmarEntrada, setShowConfirmarEntrada] = useState(false);
@@ -18,20 +21,6 @@ function BaterPonto() {
   const [showHistoryBox, setShowHistoryBox] = useState(false);
   const [selectedDay, setSelectedDay] = useState(dayjs());
   const [currentTime, setCurrentTime] = useState(dayjs());
-  const [history, setHistory] = useState([]);
-
-
-  useEffect(() => {
-    setShowBaterPonto(true);
-    const storedHistory = localStorage.getItem("pontosBatidos");
-    if (storedHistory) {
-      setHistory(JSON.parse(storedHistory));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("pontosBatidos", JSON.stringify(history));
-  }, [history]);
 
   useEffect(() => {
     setShowBaterPonto(true);
@@ -78,7 +67,7 @@ function BaterPonto() {
       date: selectedDay.format('DD/MM/YYYY'),
       time: currentTime.format('HH:mm')
     };
-    updateHistory(newRecord);
+    addPonto(newRecord);
     setShowConfirmarEntrada(true);
     setShowEntradaBox(false);
   };
@@ -89,16 +78,9 @@ function BaterPonto() {
       date: selectedDay.format('DD/MM/YYYY'),
       time: currentTime.format('HH:mm')
     };
-    updateHistory(newRecord);
+    addPonto(newRecord);
     setShowConfirmarSaida(true);
     setShowSaidaBox(false);
-  };
-
-  const updateHistory = (newRecord) => {
-    setHistory((prevHistory) => {
-      const updatedHistory = [newRecord, ...prevHistory];
-      return updatedHistory.slice(0, 5); // Keep only the last 5 records
-    });
   };
 
   return (
@@ -145,7 +127,7 @@ function BaterPonto() {
               <h3>Horário</h3>
               <h3>{currentTime.format('HH:mm')}</h3>
             </div>
-            <div className="BotoesComponentesMenu"> 
+            <div className="botoesComponentesMenu"> 
               <Button onClick={handleConfirmarEntrada}>
                 Confirmar
               </Button>
@@ -174,7 +156,7 @@ function BaterPonto() {
               <h3>Horário</h3>
               <h3>{currentTime.format('HH:mm')}</h3>
             </div>
-            <div className="BotoesComponentesMenu"> 
+            <div className="botoesComponentesMenu"> 
               <Button onClick={handleConfirmarSaida}>
                 Confirmar
               </Button>

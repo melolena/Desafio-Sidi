@@ -1,24 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Header from "../../components/Header";
-import "../baterPonto/styleBP.sass";
+import React, { useState, useEffect, useContext } from 'react';
+import dayjs from 'dayjs';
 import { IoIosArrowBack } from "react-icons/io";
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import HistoryContext from '../../components/HistoryContext';
 import Calendario from "../../components/Calendario";
-import dayjs from "dayjs";
+import Header from "../../components/Header";
+import "../baterPonto/styleBP.sass"; 
 
-function CorrigirPonto({ pontosBatidos }) {
+function CorrigirPonto() {
+  const { history, addPonto } = useContext(HistoryContext);
   const [selectedDay, setSelectedDay] = useState(dayjs());
   const [showCorrigirPonto, setShowCorrigirPonto] = useState(false);
   const [pontosDoDia, setPontosDoDia] = useState([]);
 
   useEffect(() => {
-    if (pontosBatidos && selectedDay) {
-      const pontos = pontosBatidos.filter(
-        (ponto) => ponto.data === selectedDay.format("DD/MM/YYYY")
+    if (selectedDay) {
+      const pontos = history.filter(
+        (ponto) => ponto.date === selectedDay.format("DD/MM/YYYY")
       );
       setPontosDoDia(pontos);
+      setShowCorrigirPonto(true); // Abre a caixa de correção automaticamente
     }
-  }, [selectedDay, pontosBatidos]);
+  }, [selectedDay, history]);
 
   const handleDayClick = (day) => {
     setSelectedDay(day);
@@ -27,41 +31,39 @@ function CorrigirPonto({ pontosBatidos }) {
 
   const corrigirPonto = (ponto) => {
     console.log("Corrigindo ponto:", ponto);
+    // Aqui você pode implementar a lógica de correção do ponto
   };
 
   return (
-    <div id="corrigirPonto">
+    <div className="corrigirPonto">
       <Header />
       <div className="botaoVoltar">
         <Link to="/home">
           <IoIosArrowBack />
         </Link>
       </div>
-      <div className="bodyCorrecao">
-        <div className="calendarioCorrecao">
+      <div className="bodyCorrigirPonto">
+        <div className="calendario">
           <h2>2024</h2>
           <Calendario onDayClick={handleDayClick} selectedDay={selectedDay} />
         </div>
         {showCorrigirPonto && (
-          <div className="validationBox">
-            <h2>Corrigir Ponto</h2>
-            <div className="dataRegistada">
-              <h3>Data</h3>
-              <h3>{selectedDay.format("DD/MM/YYYY")}</h3>
-            </div>
-            <div className="pontosBatidos">
-              <h3>Pontos Batidos</h3>
+          <div className="corrigirPontoBox">
+            <h2>Correção de Ponto</h2>
+            <div className="pontosDoDia">
               {pontosDoDia.length > 0 ? (
-                pontosDoDia.map((ponto, index) => (
-                  <div key={index} className="ponto">
-                    <span>{ponto.horario}</span>
-                    <button onClick={() => corrigirPonto(ponto)}>
-                      Corrigir
-                    </button>
-                  </div>
-                ))
+                <ul>
+                  {pontosDoDia.map((ponto, index) => (
+                    <li key={index}>
+                      <span>{ponto.tipo}</span> {/* Exibe o tipo de ponto */}
+                      <span>{ponto.date}</span>
+                      <span>{ponto.time}</span>
+                      <Button variant="contained" onClick={() => corrigirPonto(ponto)}>Corrigir</Button>
+                    </li>
+                  ))}
+                </ul>
               ) : (
-                <p>Nenhum ponto batido neste dia.</p>
+                <p>Nenhum ponto registrado neste dia.</p>
               )}
             </div>
           </div>
