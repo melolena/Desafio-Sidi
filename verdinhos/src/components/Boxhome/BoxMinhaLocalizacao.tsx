@@ -5,7 +5,7 @@ import MaskMinhaLocaliacao from '../MaskMinhaLocalizacao';
 
 function BoxMinhaLocalizacao(){
     return(
-        <Box>
+        <Box className="boxBody">
             <div className="boxHome">
                 <div className="tituloBoxHome">
                     <h2>Minha Localização</h2>

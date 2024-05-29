@@ -4,39 +4,48 @@
 
 
 body
-  margin : 0
+  margin: 0
   padding: 0
-  
 
-  .boxHome
+  .boxBody
     display: flex
-    flex-direction: column
     justify-content: center
     align-items: center
-    width:450px
-    height: auto
-    background-color: #471D7C
-    border: 10px solid #3fd48f
-    border-radius: 10px
-    padding-bottom: 10px
+    margin: 10px
+    max-width: 450px
+  
 
-    &:hover
-        background-color: #3fd48f
-        transition: 0.3s
+    .boxHome
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      width: 450px
+      height: auto
+      background-color: #471D7C
+      border: 10px solid #3fd48f
+      border-radius: 10px
+      padding-bottom: 10px
 
-    .tituloBoxHome 
-        display: flex
-        flex-direction: row
-        justify-content: space-around
-        align-items: center
-        color: white
-        width: 100%
+      &:hover
+          background-color: #3fd48f
+          transition: 0.3s
 
-        h2
-            font-family: 'Josefins Sans'
-            font-size: 36px
-           
+      .tituloBoxHome 
+          display: flex
+          flex-direction: row
+          justify-content: space-between
+          align-items: center
+          color: white
+          width: 100%
+
+          h2
+              font-family: 'Josefins Sans'
+              font-size: 36px
+              margin-left: 8px
             
-        svg
-            font-size: 70px
+              
+          svg
+              font-size: 70px
+              margin-right: 5px
 

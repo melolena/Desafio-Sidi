@@ -5,7 +5,7 @@ import './styleBox.sass';
 
 function BoxBaterPonto(){
     return(
-        <Box>
+        <Box className="boxBody">
             <div className="boxHome">
                 <div className="tituloBoxHome">
                     <h2>Bater Ponto</h2>

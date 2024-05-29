@@ -5,7 +5,7 @@ import MaskJustificaPonto from '../MaskJustificaPonto';
 
 function BoxJustificaPonto(){
     return(
-        <Box>
+        <Box className="boxBody">
             <div className="boxHome">
                 <div className="tituloBoxHome">
                     <h2>Justificar Ponto</h2>
