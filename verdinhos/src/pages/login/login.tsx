@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AiOutlineFacebook, AiOutlineGoogle, AiOutlineLinkedin, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import logoSidi from '../../assets/logo-sidi-nome.png';
 import ModalRecuperacaoSenha from "../../components/ModalRecuperacaoSenha";
@@ -14,7 +14,7 @@ function Login() {
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
   const [errors, setErrors] = useState({});
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const HOME_ROUTE = '/home'; // Constante com o caminho de redirecionamento
 
@@ -34,7 +34,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validateForm()) {
-      history.push(HOME_ROUTE);
+      navigate(HOME_ROUTE);
     }
   };
 

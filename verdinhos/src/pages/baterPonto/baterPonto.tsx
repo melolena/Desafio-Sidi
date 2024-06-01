@@ -4,7 +4,7 @@ import Calendario from "../../components/Calendario";
 import Header from "../../components/Header";
 import "./styleBP.sass";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';;
 import Button from '@mui/material/Button';
 import { GiEntryDoor, GiExitDoor } from "react-icons/gi";
 import { MdHistory } from "react-icons/md";
@@ -179,12 +179,12 @@ function BaterPonto() {
             <h2>Histórico</h2>
             <h3>Últimos Pontos Batidos</h3>
             {history.length > 0 ? (
-              <div id="dateSpace">
+              <div className="pontosDoDia">
                 <ul id="historyList">
                   {history.map((record, index) => (
                     <li key={index} className="dateHistory">
-                      <span>{record.tipo}</span>
-                      <span>{record.date}</span>
+                      <span>{record.tipo} - </span>
+                      <span>{record.date} - </span>
                       <span>{record.time}</span>
                     </li>
                   ))}

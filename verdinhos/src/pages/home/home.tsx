@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './styleHome.sass';
@@ -8,36 +9,30 @@ import BoxMinhaLocalizacao from '../../components/Boxhome/BoxMinhaLocalizacao';
 import Header from '../../components/Header';
 
 function Home() {
-
-
   return (
     <div className="home">
-      <Header/>
+      <Header />
       <div id="bodyHome">
-       <div className="linhaHome">
-        <div className="unidadeDashboard">
-          <Link to="/baterponto" style={{textDecoration: "none"}}>
-              <BoxBaterPonto/>
+        <div className="linhaHome">
+          <div className="unidadeDashboard">
+            <Link to="/baterponto" style={{ textDecoration: "none" }}>
+              <BoxBaterPonto />
             </Link>
           </div>
           <div className="unidadeDashboard">
-            <Link to="" style={{textDecoration: "none"}}>
-              <BoxJustificaPonto/>
-            </Link>
+            <BoxJustificaPonto /> 
           </div>
-       </div>
-       <div className="linhaHome">
-        <div className="unidadeDashboard">
-            <Link to="/corrigirponto" style={{textDecoration: "none"}}>
-              <BoxCorrigirPonto/>
+        </div>
+        <div className="linhaHome">
+          <div className="unidadeDashboard">
+            <Link to="/corrigirponto" style={{ textDecoration: "none" }}>
+              <BoxCorrigirPonto />
             </Link>
           </div>
           <div className="unidadeDashboard">
-            <Link to="" style={{textDecoration: "none"}}>
-              <BoxMinhaLocalizacao/>
-            </Link>
+            <BoxMinhaLocalizacao /> 
           </div>
-       </div>
+        </div>
       </div>
     </div>
   );

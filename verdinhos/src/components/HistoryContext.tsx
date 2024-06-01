@@ -6,21 +6,37 @@ export const HistoryProvider = ({ children }) => {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    const storedHistory = localStorage.getItem("pontosBatidos");
-    if (storedHistory) {
-      setHistory(JSON.parse(storedHistory));
+    try {
+      const storedHistory = localStorage.getItem("pontosBatidos");
+      if (storedHistory) {
+        const parsedHistory = JSON.parse(storedHistory);
+        if (Array.isArray(parsedHistory)) {
+          setHistory(parsedHistory);
+        } else {
+          console.warn("Unexpected data format in localStorage");
+          localStorage.removeItem("pontosBatidos");
+        }
+      }
+    } catch (e) {
+      console.error("Error reading from localStorage", e);
+      localStorage.removeItem("pontosBatidos");
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("pontosBatidos", JSON.stringify(history));
+    try {
+      localStorage.setItem("pontosBatidos", JSON.stringify(history));
+    } catch (e) {
+      console.error("Error writing to localStorage", e);
+    }
   }, [history]);
 
-  const addPonto = (newRecord) => {
-    setHistory((prevHistory) => {
-      const updatedHistory = [newRecord, ...prevHistory];
-      return updatedHistory.slice(0, 5); // Mantém apenas os últimos 5 registros
-    });
+  const addPonto = (newRecord, newHistory = null) => {
+    const updatedHistory = newHistory 
+      ? newHistory.slice(0, 4) 
+      : [newRecord, ...history].slice(0, 4);
+  
+    setHistory(updatedHistory);
   };
 
   return (
