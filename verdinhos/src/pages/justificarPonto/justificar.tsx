@@ -7,7 +7,6 @@ import Calendario from '../../components/Calendario';
 import dayjs from 'dayjs';
 import "../baterPonto/styleBP.sass";
 import { TextField } from '@mui/material';
-import BotaoUpload from '../../components/BotaoUpload';
 
 function JustificarPonto() {
   const { history } = useContext(HistoryContext);

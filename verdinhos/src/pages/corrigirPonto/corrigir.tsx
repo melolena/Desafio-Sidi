@@ -7,7 +7,7 @@ import HistoryContext from '../../components/HistoryContext';
 import Calendario from "../../components/Calendario";
 import Header from "../../components/Header";
 import "../baterPonto/styleBP.sass";
-import { TextField, createTheme } from '@mui/material';
+import { TextField } from '@mui/material';
 
 function CorrigirPonto() {
   const { history, addPonto } = useContext(HistoryContext);

@@ -1,3 +1,4 @@
+import { createTheme } from '@mui/material/styles';
 import logoSidi from '../assets/logo-sidi-nome.png';
 import Avatar from '@mui/material/Avatar';
 import Mauricio from '../assets/mauricioG.jpg';
