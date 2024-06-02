@@ -20,7 +20,9 @@ function Home() {
             </Link>
           </div>
           <div className="unidadeDashboard">
-            <BoxJustificaPonto /> 
+            <Link to='/justificarponto' style={{ textDecoration: "none" }}>
+              <BoxJustificaPonto /> 
+            </Link>
           </div>
         </div>
         <div className="linhaHome">
