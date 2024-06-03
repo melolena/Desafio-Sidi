@@ -32,7 +32,9 @@ function Home() {
             </Link>
           </div>
           <div className="unidadeDashboard">
-            <BoxMinhaLocalizacao /> 
+            <Link to="/minhalocalizacao" style={{ textDecoration: "none" }}>
+              <BoxMinhaLocalizacao/>
+            </Link>
           </div>
         </div>
       </div>

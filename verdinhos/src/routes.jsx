@@ -5,6 +5,7 @@ import BaterPonto from './pages/baterPonto/baterPonto';
 import CorrigirPonto from './pages/corrigirPonto/corrigir';
 import { HistoryProvider } from './components/HistoryContext';
 import JustificarPonto from './pages/justificarPonto/justificar'
+import Localizacao from './pages/localizacao/localizacao';
 
 function AppRoutes() {
   return (
@@ -16,6 +17,7 @@ function AppRoutes() {
           <Route path="/baterponto" element={<BaterPonto />} />
           <Route path="/corrigirponto" element={<CorrigirPonto />} />
           <Route path="/justificarponto" element={<JustificarPonto />} />
+          <Route path="/minhalocalizacao" element={<Localizacao />} />
         </Routes>
       </BrowserRouter>
     </HistoryProvider>

@@ -151,8 +151,6 @@ body
             h3
                 margin: 6px 0
 
-            #uploadBox
-                background-color: white
 
         .validationBox 
             display: flex
@@ -218,24 +216,7 @@ body
                     gap: 10
 
                     span
-                        margin-right: 10px
-                
-
-    #uploadBox
-        border: 1px solid #000000
-        border-radius: 0
-        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3)
-        width: 80%
-        height: 25%
-        margin-top: 20px 
-    
-
-        svg 
-            font-size: 70px
-            color: #777777
-
-    #uploadBox:hover
-        background-color: white                        
+                        margin-right: 10px                       
 
     
         #subtituloConfirmacao 
@@ -250,9 +231,41 @@ body
         #rodape
             font-size:16px
             margin: 6% 2% 3%
+
+.file-upload-container 
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    margin-bottom: 10px
+
+    form 
+        border: 1px solid #000000
+        border-radius: 0
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3)
+        margin-top: 20px 
+        width: 450px
+        height: 70px
+        display: flex
+        justify-content: center
+        align-items: center
+
+
+
+    .file-upload-label 
+        svg 
+            font-size: 70px
+            color: #777777
+            width: 450px
+            height: 70px
+
+
+
+    .file-upload-input 
+        display: none
         
 
-
+        
    
 
 .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root
