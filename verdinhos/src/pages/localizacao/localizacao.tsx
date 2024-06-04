@@ -1,7 +1,7 @@
 import { IoIosArrowBack } from "react-icons/io";
 import Header from "../../components/Header";
 import { Link } from 'react-router-dom';
-import Map from "../../components/Map";
+import Leaflet from "../../components/Leaflet";
 
 
 function Localizacao(){
@@ -15,7 +15,7 @@ function Localizacao(){
             </div>
             <div className='bodyCorrecao'>
                 <div id='mapa'>
-                    <Map />
+                    <Leaflet />
                 </div>
             </div>
         </div>
