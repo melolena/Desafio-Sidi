@@ -14,6 +14,7 @@ function Login() {
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
   const [errors, setErrors] = useState({});
+  const [showLoginModal, setShowLoginModal] = useState(false); // Estado para controlar a visibilidade do modal de login
   const navigate = useNavigate();
 
   const HOME_ROUTE = '/home'; // Constante com o caminho de redirecionamento
@@ -34,7 +35,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validateForm()) {
-      navigate(HOME_ROUTE);
+      setShowLoginModal(true); // Abre o modal de login ao clicar em "Continuar"
     }
   };
 
@@ -48,8 +49,9 @@ function Login() {
           <h2>Seja Bem-Vindo</h2>
           <p>Vamos começar? Faça login para fazer<br /> seu check-in diário!</p>
           <ModalRecuperacaoSenha />
+          <ModalLogin isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} />
         </div>
-        <ModalLogin />
+        <button type="button" id="botao-entrar" onClick={() => setShowLoginModal(true)}>Entrar</button>
       </div>
       <div className="cadastro">
         <h2>Criar Conta</h2>

@@ -1,5 +1,4 @@
-import './App.sass'
-import { useState } from "react";
+import './App.sass';
 import AppRoutes from './routes.jsx';
 
 function App(){
