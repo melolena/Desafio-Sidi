@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import logoSidi from '../assets/logo-sidi-nome.png';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link } from 'react-router-dom';
 
 const style = {
   display: 'flex',
@@ -15,7 +15,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 500,
-  height: 250,
+  height: 300,
   bgcolor: '#ffffff',
   borderColor: '#ffffff',
   borderRadius: '20px',
@@ -48,9 +48,12 @@ const inserirEmail = {
   flexDirection: 'column',
   marginBottom: '20px',
   marginTop: '5px',
+  position: 'relative',
 };
 
 const labelEmail = {
+  display: 'flex',
+  alignItems: 'center',
   marginBottom: '10px',
 };
 
@@ -106,8 +109,11 @@ const esqueciSenha = {
   textAlign: 'center',
   textDecoration: 'none',
   marginTop: '10px',
-  color: '##620FC3'
-}
+  color: '#620FC3', 
+  fontFamily: 'Josefin Sans',
+  fontWeight: '20px',
+  cursor: 'pointer',
+};
 
 const toggleEnviarHover = (event) => {
   event.target.style.backgroundColor = '#3FD48F';
@@ -117,6 +123,12 @@ const toggleEnviarHover = (event) => {
 const toggleEnviarNormal = (event) => {
   event.target.style.backgroundColor = '#D9D9D9';
   event.target.style.color = '#777777';
+};
+
+const errorMessageStyle = {
+  marginLeft: '10px',
+  color: 'red',
+  fontSize: '12px',
 };
 
 function ModalRecuperacaoSenha({ isOpen, onClose }) {
@@ -156,7 +168,10 @@ function ModalRecuperacaoSenha({ isOpen, onClose }) {
           </div>
           <p style={{ textAlign: 'center', marginTop: '8px', color: '#000000' }}>Insira seu e-mail para a recuperação de sua conta</p>
           <div id="inputModal" style={inserirEmail}>
-            <label style={labelEmail}>Email</label>
+            <label style={labelEmail}>
+              Email
+              {!isValidEmail && <span style={errorMessageStyle}>Email inválido.</span>}
+            </label>
             <input
               style={inputEmail}
               type="email"
@@ -206,11 +221,19 @@ export default function ModalLogin({ isOpen, onClose }) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isRecuperacaoOpen, setIsRecuperacaoOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!email || !password) {
+      setErrorMessage('Email e senha são obrigatórios.');
+    } else {
+      setErrorMessage('');
+      navigate('/home');
+    }
   };
 
   const handleOpenRecuperacao = () => {
@@ -233,7 +256,10 @@ export default function ModalLogin({ isOpen, onClose }) {
           </div>
           <form onSubmit={handleSubmit}>
             <div style={inserirEmail}>
-              <label htmlFor="email" style={labelEmail}>Email</label>
+              <label htmlFor="email" style={labelEmail}>
+                Email
+                {errorMessage && !email && <span style={errorMessageStyle}>Email é obrigatório.</span>}
+              </label>
               <input
                 type="email"
                 id="email"
@@ -243,7 +269,10 @@ export default function ModalLogin({ isOpen, onClose }) {
               />
             </div>
             <div style={inserirEmail}>
-              <label htmlFor="password" style={labelEmail}>Senha</label>
+              <label htmlFor="password" style={labelEmail}>
+                Senha
+                {errorMessage && !password && <span style={errorMessageStyle}>Senha é obrigatória.</span>}
+              </label>
               <div style={{ position: 'relative' }}>
                 <input
                   type={showPassword ? 'text' : 'password'}
@@ -262,11 +291,9 @@ export default function ModalLogin({ isOpen, onClose }) {
               <button type="button" onClick={onClose} style={botaoVoltar}>
                 Voltar
               </button>
-              <Link to="/home">
-                <button type="submit" onMouseEnter={toggleEnviarHover} onMouseLeave={toggleEnviarNormal} style={botaoEnviar}>
-                  Enviar
-                </button>
-              </Link>
+              <button type="submit" onMouseEnter={toggleEnviarHover} onMouseLeave={toggleEnviarNormal} style={botaoEnviar}>
+                Enviar
+              </button>
             </div>
           </form>
         </Box>
