@@ -28,10 +28,8 @@ function Header() {
             <a className="IconMenu" href="#">
               <BiSupport />
             </a>
-            <Link to="/">
-              <a className="IconMenu" href="#">
-                <IoIosLogOut/>
-              </a>
+            <Link to="/" className="IconMenu">
+              <IoIosLogOut />
             </Link>
           </div>
         </div>
