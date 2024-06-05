@@ -8,6 +8,32 @@ import Calendario from "../../components/Calendario";
 import Header from "../../components/Header";
 import "../baterPonto/styleBP.sass";
 import { TextField } from '@mui/material';
+import { styled } from '@mui/material/styles'; 
+
+const CustomTextField = styled(TextField)(({ theme }) => ({
+  '& .MuiInputBase-root': {
+    border: '3px solid #620FC3',
+    backgroundColor: '#D9D9D9',
+    borderRadius: '5px',
+    height: '40px',
+    width: '300px',
+    '& input': {
+      textAlign: 'center',
+      fontSize: '16px',
+      fontWeight: 'bold',
+      color: '#000000',
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
+    },
+  },
+  '& .MuiInputLabel-root': {
+    display: 'none', // Hide label
+  },
+  '& .MuiSvgIcon-root': {
+    color: '#620FC3',
+  },
+}));
 
 function CorrigirPonto() {
   const { history, addPonto } = useContext(HistoryContext);
@@ -26,14 +52,13 @@ function CorrigirPonto() {
         (ponto) => ponto.date === selectedDay.format("DD/MM/YYYY")
       );
       setPontosDoDia(pontos);
-      setShowCorrigirPonto(true);
+      setTimeout(() => setShowCorrigirPonto(true), 300);
     }
   }, [selectedDay, history]);
 
   const handleDayClick = (day) => {
     setSelectedDay(day);
-    setShowCorrigirPonto(true);
-    setShowCorrecaoPonto(true);
+    setTimeout(() => setShowCorrecaoPonto(true),300);
     setShowEdicao(false);
     setShowConfirmarEdicao(false);
   };
@@ -104,7 +129,7 @@ function CorrigirPonto() {
           <div className="validationBox" id="pontoEditado">
             <h2>Corrigir Ponto</h2>
             <h3>Horário:</h3>
-            <TextField
+            <CustomTextField
               type="time"
               id='caixaHora'
               value={novoHorario}

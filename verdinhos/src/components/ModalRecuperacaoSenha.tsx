@@ -7,7 +7,7 @@ import '../pages/login/style.sass';
 const style = {
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   alignItems: 'center',
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -109,6 +109,8 @@ const toggleEnviarNormal = (event) => {
   event.target.style.color = '#777777';
 };
 
+
+
 export default function ModalRecuperacaoSenha() {
   const [open, setOpen] = React.useState(false);
   const [childModalOpen, setChildModalOpen] = React.useState(false);
@@ -177,15 +179,19 @@ export default function ModalRecuperacaoSenha() {
         aria-describedby="child-modal-description"
       >
         <Box sx={style}>
-          <h2 style={titulo}>Recuperação de senha enviada</h2>
-          <p style={corpo}>A recuperação de senha foi enviada para o e-mail {email}</p>
-          <div style={botoes}>
-            <button id="voltar" onClick={handleCloseChildModal} style={botaoVoltar}>
-              Voltar
-            </button>
-          </div>
+            <div style={header}>
+              <img src={logoSidi} style={logoStyle} />
+              <h2 style={titulo}>Recuperar Conta</h2>
+            </div>
+            <p style={corpo}>Uma mensagem foi enviada para o seu e-mail. Siga o passo a passo para recuperação da sua conta. {email}</p>
+            <div style={botoes}>
+              <button id="voltar" onClick={handleCloseChildModal} style={botaoVoltar}>
+                Voltar
+              </button>
+            </div>
         </Box>
       </Modal>
     </div>
   );
 }
+  

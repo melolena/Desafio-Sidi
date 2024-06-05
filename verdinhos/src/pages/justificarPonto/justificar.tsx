@@ -8,12 +8,38 @@ import dayjs from 'dayjs';
 import '../baterPonto/styleBP.sass';
 import { Button, TextField } from '@mui/material';
 import ButtonUpload from '../../components/ButtonUpload';
+import { styled } from '@mui/system';
+
+const CustomTextField = styled(TextField)(({ theme }) => ({
+  '& .MuiInputBase-root': {
+    border: '3px solid #620FC3',
+    backgroundColor: '#D9D9D9',
+    borderRadius: '5px',
+    height: '40px',
+    width: '300px',
+    '& input': {
+      textAlign: 'center',
+      fontSize: '16px',
+      fontWeight: 'bold',
+      color: '#000000',
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
+    },
+  },
+  '& .MuiInputLabel-root': {
+    display: 'none', // Hide label
+  },
+  '& .MuiSvgIcon-root': {
+    color: '#620FC3',
+  },
+}));
 
 function JustificarPonto() {
   const { history } = useContext(HistoryContext);
   const [selectedDay, setSelectedDay] = useState(dayjs());
   const [pontosDoDia, setPontosDoDia] = useState([]);
-  const [showJustificarPonto, setShowJustificarPonto] = useState(false);
+  const [showJustificarPonto, setShowJustificarPonto] = useState(true);
   const [showConfirmarJustificativa, setShowConfirmarJustificativa] = useState(false);
   const [arquivoAnexado, setArquivoAnexado] = useState(false);
   const [selectedTime, setSelectedTime] = useState('');
@@ -24,16 +50,17 @@ function JustificarPonto() {
         (ponto) => ponto.date === selectedDay.format("DD/MM/YYYY")
       );
       setPontosDoDia(pontos);
-      setShowJustificarPonto(true);
+      setTimeout(() => setShowJustificarPonto(true), 300);
+
     }
   }, [selectedDay, history]);
 
   const handleDayClick = (day) => {
     setSelectedDay(day);
-    setShowJustificarPonto(false);
+    setShowJustificarPonto(true);
     setShowConfirmarJustificativa(false);
-    setSelectedTime('');
     setArquivoAnexado(false); 
+    setSelectedTime('');
   };
 
   const handleTimeChange = (event) => {
@@ -78,9 +105,8 @@ function JustificarPonto() {
             <h2>Justificar Ponto</h2>
             <h3>{selectedDay.format('DD/MM/YYYY')}</h3>
             <h3>Horário:</h3>
-            <TextField
+            <CustomTextField
               type="time"
-              id='caixaHora'
               InputLabelProps={{ shrink: true }}
               value={selectedTime}
               onChange={handleTimeChange}
@@ -108,5 +134,3 @@ function JustificarPonto() {
 }
 
 export default JustificarPonto;
-
-   

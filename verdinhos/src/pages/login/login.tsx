@@ -14,10 +14,11 @@ function Login() {
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
   const [errors, setErrors] = useState({});
-  const [showLoginModal, setShowLoginModal] = useState(false); // Estado para controlar a visibilidade do modal de login
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRecuperacaoModal, setShowRecuperacaoModal] = useState(false); // Estado para controlar a visibilidade do modal de recuperação
   const navigate = useNavigate();
 
-  const HOME_ROUTE = '/home'; // Constante com o caminho de redirecionamento
+  const HOME_ROUTE = '/home';
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
@@ -35,8 +36,13 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validateForm()) {
-      setShowLoginModal(true); // Abre o modal de login ao clicar em "Continuar"
+      setShowLoginModal(true);
     }
+  };
+
+  const handleOpenRecuperacao = () => {
+    setShowLoginModal(false);
+    setShowRecuperacaoModal(true);
   };
 
   return (
@@ -48,8 +54,8 @@ function Login() {
         <div className="textosCadastros">
           <h2>Seja Bem-Vindo</h2>
           <p>Vamos começar? Faça login para fazer<br /> seu check-in diário!</p>
-          <ModalRecuperacaoSenha />
-          <ModalLogin isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} />
+          <ModalRecuperacaoSenha isOpen={showRecuperacaoModal} onClose={() => setShowRecuperacaoModal(false)} />
+          <ModalLogin isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} onForgotPassword={handleOpenRecuperacao} />
         </div>
         <button type="button" id="botao-entrar" onClick={() => setShowLoginModal(true)}>Entrar</button>
       </div>

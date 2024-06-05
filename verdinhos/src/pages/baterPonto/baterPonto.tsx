@@ -13,7 +13,7 @@ import HistoryContext from '../../components/HistoryContext';
 
 function BaterPonto() {
   const { history, addPonto } = useContext(HistoryContext);
-  const [showBaterPonto, setShowBaterPonto] = useState(false);
+  const [showBaterPonto, setShowBaterPonto] = useState(true);
   const [showEntradaBox, setShowEntradaBox] = useState(false);
   const [showConfirmarEntrada, setShowConfirmarEntrada] = useState(false);
   const [showConfirmarSaida, setShowConfirmarSaida] = useState(false);
@@ -23,12 +23,12 @@ function BaterPonto() {
   const [currentTime, setCurrentTime] = useState(dayjs());
 
   useEffect(() => {
-    setShowBaterPonto(true);
+    setTimeout (() => setShowBaterPonto(true), 300);
   }, []);
 
   const handleDayClick = (day) => {
     setSelectedDay(day);
-    setShowBaterPonto(true);
+    setTimeout (() => setShowBaterPonto(true), 300);
     setShowEntradaBox(false);
     setShowConfirmarEntrada(false); 
     setShowSaidaBox(false);
@@ -40,11 +40,11 @@ function BaterPonto() {
     setCurrentTime(dayjs());
 
     if (tipo === "Entrada") {
-      setShowEntradaBox(true);
+       setShowEntradaBox(true);
     } else if (tipo === "Saida") {
-      setShowSaidaBox(true);
+       setShowSaidaBox(true); 
     } else if (tipo === "Historico") {
-      setShowHistoryBox(true);
+       setShowHistoryBox(true);
     }
 
     setShowBaterPonto(false);

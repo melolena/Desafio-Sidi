@@ -23,12 +23,7 @@ const Localizacao: React.FC = () => {
 
     const handleDayClick = (day: dayjs.Dayjs) => {
         setSelectedDay(day);
-        setIsConfirming(true);
-        setShowConfirmationMessage(false);
-    };
-
-    const handleBackClick = () => {
-        setIsConfirming(false);
+       setTimeout(() => setIsConfirming(true), 300);
         setShowConfirmationMessage(false);
     };
 

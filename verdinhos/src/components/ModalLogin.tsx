@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const style = {
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   alignItems: 'center',
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -102,7 +102,7 @@ const senhaIcon = {
   fontSize: '20px',
 };
 
-const esqueciSenha ={
+const esqueciSenha = {
   textAlign: 'center',
   textDecoration: 'none',
   marginTop: '10px',
@@ -119,10 +119,93 @@ const toggleEnviarNormal = (event) => {
   event.target.style.color = '#777777';
 };
 
+function ModalRecuperacaoSenha({ isOpen, onClose }) {
+  const [email, setEmail] = useState('');
+  const [childModalOpen, setChildModalOpen] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(true);
+
+  const handleOpenChildModal = () => {
+    setChildModalOpen(true);
+    onClose();
+  };
+
+  const handleCloseChildModal = () => {
+    setChildModalOpen(false);
+    onClose();
+  };
+
+  const handleChangeEmail = (event) => {
+    const emailValue = event.target.value;
+    setEmail(emailValue);
+    const isValid = /\S+@\S+\.\S+/.test(emailValue);
+    setIsValidEmail(isValid);
+  };
+
+  return (
+    <>
+      <Modal
+        open={isOpen}
+        onClose={onClose}
+        aria-labelledby="modal-recuperacao-title"
+        aria-describedby="modal-recuperacao-description"
+      >
+        <Box sx={style}>
+          <div style={header}>
+            <img src={logoSidi} alt="Logo Sidi" style={logoStyle} />
+            <h2 style={titulo}>Recuperar Conta</h2>
+          </div>
+          <p style={{ textAlign: 'center', marginTop: '8px', color: '#000000' }}>Insira seu e-mail para a recuperação de sua conta</p>
+          <div id="inputModal" style={inserirEmail}>
+            <label style={labelEmail}>Email</label>
+            <input
+              style={inputEmail}
+              type="email"
+              id="email"
+              placeholder="Digite seu email"
+              onChange={handleChangeEmail}
+            />
+          </div>
+          <div style={botoes}>
+            <button id="voltar" onClick={onClose} style={botaoVoltar}>
+              Voltar
+            </button>
+            <button
+              id="enviar"
+              style={botaoEnviar}
+              onMouseOver={isValidEmail ? toggleEnviarHover : null}
+              onMouseOut={isValidEmail ? toggleEnviarNormal : null}
+              onClick={isValidEmail ? handleOpenChildModal : null}
+            >
+              Enviar
+            </button>
+          </div>
+        </Box>
+      </Modal>
+      <Modal
+        open={childModalOpen}
+        onClose={handleCloseChildModal}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box sx={style}>
+          <h2 style={titulo}>Recuperação de senha enviada</h2>
+          <p style={{ textAlign: 'center', marginTop: '8px', color: '#000000' }}>A recuperação de senha foi enviada para o e-mail {email}</p>
+          <div style={botoes}>
+            <button id="voltar" onClick={handleCloseChildModal} style={botaoVoltar}>
+              Voltar
+            </button>
+          </div>
+        </Box>
+      </Modal>
+    </>
+  );
+}
+
 export default function ModalLogin({ isOpen, onClose }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isRecuperacaoOpen, setIsRecuperacaoOpen] = useState(false);
 
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
 
@@ -130,7 +213,13 @@ export default function ModalLogin({ isOpen, onClose }) {
     event.preventDefault();
   };
 
+  const handleOpenRecuperacao = () => {
+    setIsRecuperacaoOpen(true);
+    onClose();
+  };
+
   return (
+    <>
       <Modal
         open={isOpen}
         onClose={onClose}
@@ -167,7 +256,7 @@ export default function ModalLogin({ isOpen, onClose }) {
                   {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                 </span>
               </div>
-              <Link to="/forgot-password" style={esqueciSenha}>Esqueci minha senha</Link>
+              <a onClick={handleOpenRecuperacao} style={esqueciSenha}>Esqueci minha senha</a>
             </div>
             <div style={botoes}>
               <button type="button" onClick={onClose} style={botaoVoltar}>
@@ -182,5 +271,7 @@ export default function ModalLogin({ isOpen, onClose }) {
           </form>
         </Box>
       </Modal>
+      <ModalRecuperacaoSenha isOpen={isRecuperacaoOpen} onClose={() => setIsRecuperacaoOpen(false)} />
+    </>
   );
 }
