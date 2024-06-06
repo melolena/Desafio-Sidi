@@ -15,7 +15,7 @@ function Login() {
   const [confirmarSenha, setConfirmarSenha] = useState('');
   const [errors, setErrors] = useState({});
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRecuperacaoModal, setShowRecuperacaoModal] = useState(false); // Estado para controlar a visibilidade do modal de recuperação
+  const [showRecuperacaoModal, setShowRecuperacaoModal] = useState(false);
   const navigate = useNavigate();
 
   const HOME_ROUTE = '/home';
@@ -65,69 +65,69 @@ function Login() {
           <a href="https://www.facebook.com/login">
             <AiOutlineFacebook />
           </a>
-          <a href="https://www.google.com/login" id="iconGoogle">
-            <AiOutlineGoogle />
+          <a href="https://www.google.com/gmail/">
+            <AiOutlineGoogle id="iconGoogle" />
           </a>
-          <a href="https://www.linkedin.com/login">
+          <a href="https://www.linkedin.com/login/pt">
             <AiOutlineLinkedin />
           </a>
         </div>
         <form id="formCadastro" onSubmit={handleSubmit}>
           <div className="inputCadastro">
-            <label htmlFor="nomeCompleto">Nome Completo</label>
+            <div className="inputLabel">
+              <label htmlFor="nomeCompleto">Nome Completo</label>
+              {errors.nomeCompleto && <span className="error-message">{errors.nomeCompleto}</span>}
+            </div>
             <input
               type="text"
               id="nomeCompleto"
-              placeholder="Digite seu nome completo"
               value={nomeCompleto}
               onChange={(e) => setNomeCompleto(e.target.value)}
             />
-            {errors.nomeCompleto && <span className="error">{errors.nomeCompleto}</span>}
           </div>
           <div className="inputCadastro">
-            <label htmlFor="email">Email</label>
+            <div className="inputLabel">
+              <label htmlFor="email">Email</label>
+              {errors.email && <span className="error-message">{errors.email}</span>}
+            </div>
             <input
               type="email"
               id="email"
-              placeholder="Digite seu email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {errors.email && <span className="error">{errors.email}</span>}
           </div>
-          <div className="inputCadastro">
-            <label htmlFor="senha">Senha</label>
-            <div className="password-input">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="senha"
-                placeholder="Digite sua senha"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-              />
-              <span className="password-toggle" onClick={togglePasswordVisibility}>
-                {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-              </span>
+          <div className="inputCadastro password-input">
+            <div className="inputLabel">
+              <label htmlFor="senha">Senha</label>
+              {errors.senha && <span className="error-message">{errors.senha}</span>}
             </div>
-            {errors.senha && <span className="error">{errors.senha}</span>}
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+            />
+            <span className="password-toggle" onClick={togglePasswordVisibility}>
+              {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            </span>
           </div>
-          <div className="inputCadastro">
-            <label htmlFor="confirmarSenha">Confirmar Senha</label>
-            <div className="password-input">
-              <input
-                type={showConfirmPassword ? "text" : "password"}
-                id="confirmarSenha"
-                placeholder="Confirme sua senha"
-                value={confirmarSenha}
-                onChange={(e) => setConfirmarSenha(e.target.value)}
-              />
-              <span className="password-toggle" onClick={toggleConfirmPasswordVisibility}>
-                {showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-              </span>
+          <div className="inputCadastro password-input">
+            <div className="inputLabel">
+              <label htmlFor="confirmarSenha">Confirmar Senha</label>
+              {errors.confirmarSenha && <span className="error-message">{errors.confirmarSenha}</span>}
             </div>
-            {errors.confirmarSenha && <span className="error">{errors.confirmarSenha}</span>}
+            <input
+              type={showConfirmPassword ? 'text' : 'password'}
+              id="confirmarSenha"
+              value={confirmarSenha}
+              onChange={(e) => setConfirmarSenha(e.target.value)}
+            />
+            <span className="password-toggle" onClick={toggleConfirmPasswordVisibility}>
+              {showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            </span>
           </div>
-          <button type="submit" id="continuar-cadastro">Continuar</button>
+          <button type="submit">Cadastrar</button>
         </form>
       </div>
     </div>
