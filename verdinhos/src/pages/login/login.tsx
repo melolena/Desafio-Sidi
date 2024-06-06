@@ -4,7 +4,7 @@ import { AiOutlineFacebook, AiOutlineGoogle, AiOutlineLinkedin, AiOutlineEye, Ai
 import logoSidi from '../../assets/logo-sidi-nome.png';
 import ModalRecuperacaoSenha from "../../components/ModalRecuperacaoSenha";
 import ModalLogin from "../../components/ModalLogin";
-import './style.sass';
+import './style.css';
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);

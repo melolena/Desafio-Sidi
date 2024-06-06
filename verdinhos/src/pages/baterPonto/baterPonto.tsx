@@ -2,9 +2,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Calendario from "../../components/Calendario";
 import Header from "../../components/Header";
-import "./styleBP.sass";
+import "./styleBP.css";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from 'react-router-dom';;
+import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { GiEntryDoor, GiExitDoor } from "react-icons/gi";
 import { MdHistory } from "react-icons/md";

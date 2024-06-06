@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import MaskBaterPonto from '../MaskBaterPonto';
-import './styleBox.sass';
+import './styleBox.css';
 
 function BoxBaterPonto(){
     return(

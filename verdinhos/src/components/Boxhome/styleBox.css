@@ -1,0 +1,70 @@
+:root {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.boxBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  max-width: 450px;
+}
+
+.boxBody .boxHome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  height: auto;
+  background-color: #471D7C;
+  border: 10px solid #3fd48f;
+  border-radius: 10px;
+  padding-bottom: 18px;
+}
+
+.boxBody .boxHome:hover {
+  background-color: #3fd48f;
+  transition: 0.3s;
+}
+
+.boxBody .boxHome .tituloBoxHome {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  width: 100%;
+}
+
+.boxBody .boxHome .tituloBoxHome h2 {
+  font-family: 'Josefins Sans';
+  font-size: 36px;
+  margin-left: 8px;
+}
+
+.boxBody .boxHome .tituloBoxHome svg {
+  font-size: 70px;
+  margin-right: 5px;
+}
+
+@media only screen and (max-width: 1025px) {
+  .boxBody {
+    width: 80%;
+  }
+
+  .boxBody .boxHome .tituloBoxHome h2 {
+      font-size: 1.9rem;
+  }
+  .boxBody .boxHome .tituloBoxHome svg {
+    font-size: 3rem;
+  }
+}
+
+

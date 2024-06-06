@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './styleHome.sass';
+import './styleHome.css';
 import BoxBaterPonto from '../../components/Boxhome/BoxBaterPonto';
 import BoxJustificaPonto from '../../components/Boxhome/BoxJustificarPonto';
 import BoxCorrigirPonto from '../../components/Boxhome/BoxCorrigirPonto';
@@ -33,7 +33,7 @@ function Home() {
           </div>
           <div className="unidadeDashboard">
             <Link to="/minhalocalizacao" style={{ textDecoration: "none" }}>
-              <BoxMinhaLocalizacao/>
+              <BoxMinhaLocalizacao />
             </Link>
           </div>
         </div>

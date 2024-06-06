@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Mapa from "../../components/Mapa";
 import Calendario from "../../components/Calendario";
 import dayjs from 'dayjs';
-import '../../pages/baterPonto/styleBP.sass';
+import '../../pages/baterPonto/styleBP.css';
 import { Button } from "@mui/material";
 
 const Localizacao: React.FC = () => {

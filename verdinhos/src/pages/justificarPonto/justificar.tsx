@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
 import Calendario from '../../components/Calendario';
 import dayjs from 'dayjs';
-import '../baterPonto/styleBP.sass';
+import '../baterPonto/styleBP.css';
 import { Button, TextField } from '@mui/material';
 import ButtonUpload from '../../components/ButtonUpload';
 import { styled } from '@mui/system';

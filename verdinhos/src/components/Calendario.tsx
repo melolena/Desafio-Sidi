@@ -6,7 +6,7 @@ import { DateCalendar, PickersDay, pickersDayClasses } from '@mui/x-date-pickers
 import { ptBR } from '@mui/x-date-pickers/locales';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
-import '../pages/baterPonto/styleBP.sass';
+import '../pages/baterPonto/styleBP.css';
 
 const ServerDay = (props) => {
   const { day, outsideCurrentMonth, onDayClick, ...other } = props;

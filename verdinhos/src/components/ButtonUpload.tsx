@@ -1,4 +1,4 @@
-import '../pages/baterPonto/styleBP.sass';
+import '../pages/baterPonto/styleBP.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { MdOutlineUploadFile } from "react-icons/md";

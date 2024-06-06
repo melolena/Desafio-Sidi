@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import logoSidi from '../assets/logo-sidi-nome.png';
-import '../pages/login/style.sass';
+import '../pages/login/style.css';
 
 const style = {
   display: 'flex',
@@ -13,7 +13,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 500,
+  maxWidth: 500,
   height: 250,
   bgcolor: '#ffffff',
   borderColor: '#ffffff',
@@ -23,17 +23,27 @@ const style = {
   fontFamily: 'Josefin Sans',
 };
 
+const breakpoints = {
+  mobile: 500, 
+  tablet: 900, 
+  se: 375,
+};
+
 const header = {
   display: 'flex',
   flexDirection: 'row',
+  flexWrap: 'wrap',
   justifyContent: 'start',
   margin: '10px',
+ 
 };
 
 const logoStyle = {
-  width: '30%',
+  maxWidth: '30%',
   alignSelf: 'start',
   marginRight: '0px',
+  objectFit: 'contain',
+  
 };
 
 const titulo = {
@@ -146,8 +156,8 @@ export default function ModalRecuperacaoSenha() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <div style={header}>
+        <Box sx={style} className="modalPageLogin">
+          <div style={header} className="headerModal">
             <img src={logoSidi} style={logoStyle} />
             <h2 style={titulo}>Recuperar Conta</h2>
           </div>

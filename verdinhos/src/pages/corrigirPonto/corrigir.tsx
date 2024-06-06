@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import HistoryContext from '../../components/HistoryContext';
 import Calendario from "../../components/Calendario";
 import Header from "../../components/Header";
-import "../baterPonto/styleBP.sass";
+import "../baterPonto/styleBP.css";
 import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles'; 
 

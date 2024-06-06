@@ -1,0 +1,201 @@
+:root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
+.home {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+#bodyHome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 85%;
+  margin: auto;
+}
+
+.linhaHome {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  height: auto;
+}
+
+.unidadeDashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3% 3% 0;
+  max-width: 100%;
+}
+
+.header {
+  height: 10%;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.logoSidi {
+  margin: 8px 20px;
+}
+
+.logoSidi img {
+  width: 50%;
+  height: auto;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+}
+
+#identificador {
+  display: flex;
+  flex-direction: column;
+  margin: 8px 20px;
+}
+
+#identificador h3 {
+  font-weight: 20px;
+  margin-bottom: 5px;
+}
+
+#iconsMenu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#iconsMenu a {
+  color: black;
+  margin: 1px 4px;
+  font-size: 35px;
+}
+
+#iconsMenu svg {
+  border: 3px solid #3FD48F;
+  border-radius: 5px;
+}
+
+#iconsMenu svg:hover {
+  color: white;
+  background-color: #3FD48F;
+  transition: 0.3s;
+}
+
+@media (max-width: 1025px) {
+  .linhaHome {
+    flex-direction: column;
+  }
+}
+
+.boxBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  max-width: 450px;
+}
+
+.boxHome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  height: auto;
+  background-color: #471D7C;
+  border: 10px solid #3FD48F;
+  border-radius: 10px;
+  padding-bottom: 18px;
+}
+
+.boxHome:hover {
+  background-color: #3FD48F;
+  transition: 0.3s;
+}
+
+.tituloBoxHome {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  width: 100%;
+}
+
+.tituloBoxHome h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 36px;
+  margin-left: 8px;
+}
+
+.tituloBoxHome svg {
+  font-size: 70px;
+  margin-right: 5px;
+}
+
+@media only screen and (max-width: 1025px) {
+  .linhaHome {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .logoSidi img{
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 913px) {
+  .linhaHome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .unidadeDashboard{
+    margin-left: 80px;
+  }
+
+  .logoSidi img{
+    display: none;
+  }
+
+
+  .menu h3{
+    font-size: 1rem;
+  }
+
+  
+}

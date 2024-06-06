@@ -14,7 +14,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 500,
+  maxWidth: 500,
   height: 300,
   bgcolor: '#ffffff',
   borderColor: '#ffffff',
@@ -27,6 +27,7 @@ const style = {
 const header = {
   display: 'flex',
   flexDirection: 'row',
+  flexWrap: 'wrap', 
   justifyContent: 'start',
   marginTop: '10px',
 };
@@ -161,7 +162,7 @@ function ModalRecuperacaoSenha({ isOpen, onClose }) {
         aria-labelledby="modal-recuperacao-title"
         aria-describedby="modal-recuperacao-description"
       >
-        <Box sx={style}>
+        <Box sx={style} >
           <div style={header}>
             <img src={logoSidi} alt="Logo Sidi" style={logoStyle} />
             <h2 style={titulo}>Recuperar Conta</h2>
