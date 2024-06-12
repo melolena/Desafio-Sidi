@@ -1,21 +1,25 @@
 import '../pages/baterPonto/styleBP.css';
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 import { MdOutlineUploadFile } from "react-icons/md";
 
-function ButtonUpload({ onFileSelect }) {
-  const [files, setFiles] = useState([]);
-  const [uploadedFiles, setUploadedFiles] = useState([]);
+interface ButtonUploadProps {
+  onFileSelect: (hasFile: boolean) => void;
+}
+
+const ButtonUpload: React.FC<ButtonUploadProps> = ({ onFileSelect }) => {
+  const [files, setFiles] = useState<File[]>([]);
+  const [uploadedFiles, setUploadedFiles] = useState<string[]>([]);
   const [arquivoAnexado, setArquivoAnexado] = useState(false);
 
-  const handleFileChange = (event) => {
-    const selectedFiles = Array.from(event.target.files);
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const selectedFiles = Array.from(event.target.files || []);
     setFiles(selectedFiles);
     setArquivoAnexado(selectedFiles.length > 0);
     onFileSelect(selectedFiles.length > 0); // Atualiza o estado no componente pai
   };
 
-  const handleMultipleSubmit = (event) => {
+  const handleMultipleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
     if (!arquivoAnexado) {
