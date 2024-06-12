@@ -2,18 +2,14 @@ import React from 'react';
 import Badge from '@mui/material/Badge';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateCalendar, PickersDay, pickersDayClasses } from '@mui/x-date-pickers';
+import { DateCalendar, PickersDay, pickersDayClasses, PickersDayProps } from '@mui/x-date-pickers';
 import { ptBR } from '@mui/x-date-pickers/locales';
 import { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
 import '../pages/baterPonto/styleBP.css';
 
-interface ServerDayProps {
-  day: Dayjs;
-  outsideCurrentMonth: boolean;
+interface ServerDayProps extends PickersDayProps<Dayjs> {
   onDayClick: (day: Dayjs) => void;
-  isFirstVisibleCell?: boolean;
-  isLastVisibleCell?: boolean;
 }
 
 const ServerDay: React.FC<ServerDayProps> = (props) => {
@@ -59,13 +55,18 @@ const Calendario: React.FC<CalendarioProps> = ({ onDayClick, selectedDay }) => {
   return (
     <LocalizationProvider
       dateAdapter={AdapterDayjs}
-      localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}
+      adapterLocale="pt-br"
     >
       <DateCalendar
         value={selectedDay}
-        onChange={onDayClick}
-        slots={{ day: ServerDay as any }}
-        slotProps={{ day: { onDayClick } }}
+        onChange={(newDay) => {
+          if (newDay) {
+            onDayClick(newDay);
+          }
+        }}
+        renderDay={(day, _selectedDays, pickersDayProps) => (
+          <ServerDay {...pickersDayProps} day={day} onDayClick={onDayClick} />
+        )}
         sx={{
           backgroundColor: '#471D7C !important',
           borderRadius: '20px !important',
