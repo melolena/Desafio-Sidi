@@ -1,5 +1,5 @@
-import './App.sass';
-import AppRoutes from './routes.jsx';
+import './App.css';
+import AppRoutes from './routes.tsx';
 
 function App(){
 
