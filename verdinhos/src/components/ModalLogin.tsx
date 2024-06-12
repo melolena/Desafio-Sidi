@@ -4,64 +4,63 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import logoSidi from '../assets/logo-sidi-nome.png';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { BiFontSize } from 'react-icons/bi';
+import '../pages/login/style.css';
+import { CSSProperties } from 'react';
 
-const style = {
+const style: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
   alignItems: 'center',
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   maxWidth: 500,
   height: 300,
-  bgcolor: '#ffffff',
+  backgroundColor: '#ffffff', // corrigido para backgroundColor
   borderColor: '#ffffff',
   borderRadius: '20px',
-  boxShadow: 24,
-  p: 4,
+  boxShadow: '24px', // ajustado para ser uma string
+  padding: 4,
   fontFamily: 'Josefin Sans',
 };
 
-const header = {
+const header: CSSProperties = {
   display: 'flex',
   flexDirection: 'row',
-  flexWrap: 'wrap', 
+  flexWrap: 'wrap',
   justifyContent: 'start',
-  marginTop: '10px',
+  margin: '10px',
 };
 
-const logoStyle = {
-  width: '30%',
+const logoStyle: CSSProperties = {
+  maxWidth: '30%',
   alignSelf: 'start',
   marginRight: '0px',
 };
 
-const titulo = {
+const titulo: CSSProperties = {
   textAlign: 'center',
   margin: '10px',
   marginLeft: '5%',
   fontSize: '36px',
 };
 
-const inserirEmail = {
+const inserirEmail: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
-  marginBottom: '20px',
+  marginBottom: '30px',
   marginTop: '5px',
-  position: 'relative',
+  fontSize: '18px',
 };
 
-const labelEmail = {
-  display: 'flex',
-  alignItems: 'center',
+const labelEmail: CSSProperties = {
   marginBottom: '10px',
   fontSize: '18px',
 };
 
-const inputEmail = {
+const inputEmail: CSSProperties = {
   width: '300px',
   height: '25px',
   border: '3px solid #620FC3',
@@ -72,14 +71,14 @@ const inputEmail = {
   fontSize: '18px',
 };
 
-const botoes = {
+const botoes: CSSProperties = {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
   margin: '10px 0',
 };
 
-const botaoVoltar = {
+const botaoVoltar: CSSProperties = {
   backgroundColor: '#C74949',
   fontFamily: 'Josefin Sans',
   color: '#FFFFFF',
@@ -91,7 +90,7 @@ const botaoVoltar = {
   fontSize: '16px',
 };
 
-const botaoEnviar = {
+const botaoEnviar: CSSProperties = {
   backgroundColor: '#D9D9D9',
   fontFamily: 'Josefin Sans',
   color: '#777777',
@@ -103,7 +102,7 @@ const botaoEnviar = {
   fontSize: '16px',
 };
 
-const senhaIcon = {
+const senhaIcon: CSSProperties = {
   position: 'absolute',
   top: '50%',
   right: '10px',
@@ -112,33 +111,43 @@ const senhaIcon = {
   fontSize: '20px',
 };
 
-const esqueciSenha = {
+const esqueciSenha: CSSProperties = {
   textAlign: 'center',
   textDecoration: 'none',
   marginTop: '10px',
-  color: '#620FC3', 
+  color: '#620FC3',
   fontFamily: 'Josefin Sans',
+  backgroundColor: 'white',
+  border: 'none',
   fontSize: '16px',
   cursor: 'pointer',
 };
 
-const toggleEnviarHover = (event) => {
-  event.target.style.backgroundColor = '#3FD48F';
-  event.target.style.color = '#FFFFFF';
+const toggleEnviarHover = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const target = event.target as HTMLButtonElement;
+  target.style.backgroundColor = '#3FD48F';
+  target.style.color = '#FFFFFF';
 };
 
-const toggleEnviarNormal = (event) => {
-  event.target.style.backgroundColor = '#D9D9D9';
-  event.target.style.color = '#777777';
+const toggleEnviarNormal = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const target = event.target as HTMLButtonElement;
+  target.style.backgroundColor = '#D9D9D9';
+  target.style.color = '#777777';
 };
 
-const errorMessageStyle = {
+const errorMessageStyle: CSSProperties = {
   marginLeft: '10px',
   color: 'red',
   fontSize: '16px',
 };
 
-function ModalRecuperacaoSenha({ isOpen, onClose }) {
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onForgotPassword?: () => void;
+}
+
+const RecuperacaoSenhaModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState('');
   const [childModalOpen, setChildModalOpen] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(true);
@@ -153,7 +162,7 @@ function ModalRecuperacaoSenha({ isOpen, onClose }) {
     onClose();
   };
 
-  const handleChangeEmail = (event) => {
+  const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     const emailValue = event.target.value;
     setEmail(emailValue);
     const isValid = /\S+@\S+\.\S+/.test(emailValue);
@@ -168,7 +177,7 @@ function ModalRecuperacaoSenha({ isOpen, onClose }) {
         aria-labelledby="modal-recuperacao-title"
         aria-describedby="modal-recuperacao-description"
       >
-        <Box sx={style} >
+        <Box sx={style}>
           <div style={header}>
             <img src={logoSidi} alt="Logo Sidi" style={logoStyle} />
             <h2 style={titulo}>Recuperar Conta</h2>
@@ -194,9 +203,9 @@ function ModalRecuperacaoSenha({ isOpen, onClose }) {
             <button
               id="enviar"
               style={botaoEnviar}
-              onMouseOver={isValidEmail ? toggleEnviarHover : null}
-              onMouseOut={isValidEmail ? toggleEnviarNormal : null}
-              onClick={isValidEmail ? handleOpenChildModal : null}
+              onMouseOver={isValidEmail ? toggleEnviarHover : undefined}
+              onMouseOut={isValidEmail ? toggleEnviarNormal : undefined}
+              onClick={isValidEmail ? handleOpenChildModal : undefined}
             >
               Enviar
             </button>
@@ -221,19 +230,18 @@ function ModalRecuperacaoSenha({ isOpen, onClose }) {
       </Modal>
     </>
   );
-}
+};
 
-export default function ModalLogin({ isOpen, onClose }) {
+const ModalLogin: React.FC<ModalProps> = ({ isOpen, onClose, onForgotPassword }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [isRecuperacaoOpen, setIsRecuperacaoOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!email || !password) {
       setErrorMessage('Email e senha são obrigatórios.');
@@ -241,11 +249,6 @@ export default function ModalLogin({ isOpen, onClose }) {
       setErrorMessage('');
       navigate('/home');
     }
-  };
-
-  const handleOpenRecuperacao = () => {
-    setIsRecuperacaoOpen(true);
-    onClose();
   };
 
   return (
@@ -292,7 +295,9 @@ export default function ModalLogin({ isOpen, onClose }) {
                   {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                 </span>
               </div>
-              <a onClick={handleOpenRecuperacao} style={esqueciSenha}>Esqueci minha senha</a>
+              <button type="button" style={esqueciSenha} onClick={onForgotPassword}>
+                Esqueci minha senha
+              </button>
             </div>
             <div style={botoes}>
               <button type="button" onClick={onClose} style={botaoVoltar}>
@@ -305,7 +310,8 @@ export default function ModalLogin({ isOpen, onClose }) {
           </form>
         </Box>
       </Modal>
-      <ModalRecuperacaoSenha isOpen={isRecuperacaoOpen} onClose={() => setIsRecuperacaoOpen(false)} />
     </>
   );
-}
+};
+
+export { ModalLogin, RecuperacaoSenhaModal };

@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineFacebook, AiOutlineGoogle, AiOutlineLinkedin, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import logoSidi from '../../assets/logo-sidi-nome.png';
-import ModalRecuperacaoSenha from "../../components/ModalRecuperacaoSenha";
-import ModalLogin from "../../components/ModalLogin";
+import { ModalLogin, RecuperacaoSenhaModal } from "../../components/ModalLogin";
 import './style.css';
+
+interface Errors {
+  nomeCompleto?: string;
+  email?: string;
+  senha?: string;
+  confirmarSenha?: string;
+}
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,18 +19,16 @@ function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<Errors>({});
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRecuperacaoModal, setShowRecuperacaoModal] = useState(false);
   const navigate = useNavigate();
-
-  const HOME_ROUTE = '/home';
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: Errors = {};
     if (!nomeCompleto) newErrors.nomeCompleto = 'Nome Completo é obrigatório';
     if (!email) newErrors.email = 'Email é obrigatório';
     if (!senha) newErrors.senha = 'Senha é obrigatória';
@@ -33,7 +37,7 @@ function Login() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (validateForm()) {
       setShowLoginModal(true);
@@ -49,13 +53,13 @@ function Login() {
     <div className="bodyApp">
       <div className="login">
         <a href="https://www.sidi.org.br/" id="campoLogo">
-          <img src={logoSidi} id="logo" />
+          <img src={logoSidi} id="logo" alt="Logo Sidi" />
         </a>
         <div className="textosCadastros">
           <h2>Seja Bem-Vindo</h2>
           <p>Vamos começar? Faça login para fazer<br /> seu check-in diário!</p>
-          <ModalRecuperacaoSenha isOpen={showRecuperacaoModal} onClose={() => setShowRecuperacaoModal(false)} />
           <ModalLogin isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} onForgotPassword={handleOpenRecuperacao} />
+          <RecuperacaoSenhaModal isOpen={showRecuperacaoModal} onClose={() => setShowRecuperacaoModal(false)} />
         </div>
         <button type="button" id="botao-entrar" onClick={() => setShowLoginModal(true)}>Entrar</button>
       </div>
@@ -65,8 +69,8 @@ function Login() {
           <a href="https://www.facebook.com/login">
             <AiOutlineFacebook />
           </a>
-          <a href="https://www.google.com/gmail/"  id="iconGoogle" >
-            <AiOutlineGoogle/>
+          <a href="https://www.google.com/gmail/" id="iconGoogle" >
+            <AiOutlineGoogle />
           </a>
           <a href="https://www.linkedin.com/login/pt">
             <AiOutlineLinkedin />

@@ -8,33 +8,10 @@ interface CalendarioProps {
 }
 
 const Calendario: React.FC<CalendarioProps> = ({ value, onChange }) => {
-  const renderDay = (
-    day: Dayjs,
-    _selectedDays: Array<Dayjs | null>,
-    pickersDayProps: PickersDayProps<Dayjs>
-  ) => {
-    return (
-      <PickersDay
-        {...pickersDayProps}
-        day={day}
-        sx={{
-          '&:hover, &:focus': {
-            backgroundColor: '#471D7C !important',
-            color: 'white !important',
-          },
-          ...(pickersDayProps.outsideCurrentMonth && {
-            opacity: 0.5,
-          }),
-        }}
-      />
-    );
-  };
-
   return (
-    <DateCalendar<Dayjs>
+    <DateCalendar
       value={value}
       onChange={onChange}
-      renderDay={renderDay}
       sx={{
         backgroundColor: '#471D7C !important',
         borderRadius: '16px',

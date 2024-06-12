@@ -1,5 +1,4 @@
-// BaterPonto.js
-import React, { useState, useEffect, useContext } from 'react';
+import  { useState, useEffect, useContext } from 'react';
 import Calendario from "../../components/Calendario";
 import Header from "../../components/Header";
 import "./styleBP.css";
@@ -8,11 +7,17 @@ import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { GiEntryDoor, GiExitDoor } from "react-icons/gi";
 import { MdHistory } from "react-icons/md";
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import HistoryContext from '../../components/HistoryContext';
 
 function BaterPonto() {
-  const { history, addPonto } = useContext(HistoryContext);
+  const context = useContext(HistoryContext);
+
+  if (!context) {
+    throw new Error("BaterPonto must be used within a HistoryProvider");
+  }
+
+  const { history, addPonto } = context;
   const [showBaterPonto, setShowBaterPonto] = useState(true);
   const [showEntradaBox, setShowEntradaBox] = useState(false);
   const [showConfirmarEntrada, setShowConfirmarEntrada] = useState(false);
@@ -23,12 +28,12 @@ function BaterPonto() {
   const [currentTime, setCurrentTime] = useState(dayjs());
 
   useEffect(() => {
-    setTimeout (() => setShowBaterPonto(true), 300);
+    setTimeout(() => setShowBaterPonto(true), 300);
   }, []);
 
-  const handleDayClick = (day) => {
+  const handleDayClick = (day: Dayjs) => {
     setSelectedDay(day);
-    setTimeout (() => setShowBaterPonto(true), 300);
+    setTimeout(() => setShowBaterPonto(true), 300);
     setShowEntradaBox(false);
     setShowConfirmarEntrada(false); 
     setShowSaidaBox(false);
@@ -36,7 +41,7 @@ function BaterPonto() {
     setShowHistoryBox(false);
   };
 
-  const handlePonto = (tipo) => {
+  const handlePonto = (tipo: string) => {
     setCurrentTime(dayjs());
 
     if (tipo === "Entrada") {
@@ -94,7 +99,7 @@ function BaterPonto() {
       <div className="bodyBaterPonto">
         <div className="calendario">
           <h2>2024</h2>
-          <Calendario onDayClick={handleDayClick} selectedDay={selectedDay} />
+          <Calendario value={selectedDay} onChange={(newValue) => handleDayClick(newValue!)} />
         </div>
         {showBaterPonto && (
           <div className="menuPonto">

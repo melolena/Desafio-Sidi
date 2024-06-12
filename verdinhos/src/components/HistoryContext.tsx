@@ -1,61 +1,33 @@
-import React, { createContext, useState, useEffect, ReactNode } from 'react';
+// src/components/HistoryContext.tsx
+import React, { createContext, useState, ReactNode } from 'react';
 
-interface HistoryRecord {
+export interface HistoryRecord {
   tipo: string;
   date: string;
   time: string;
 }
 
-interface HistoryContextProps {
+export interface HistoryContextProps {
   history: HistoryRecord[];
-  addPonto: (newRecord: HistoryRecord, newHistory?: HistoryRecord[] | null) => void;
+  addPonto: (record: HistoryRecord) => void;
+  updateHistory: (updatedHistory: HistoryRecord[]) => void;
 }
 
 const HistoryContext = createContext<HistoryContextProps | undefined>(undefined);
 
-interface HistoryProviderProps {
-  children: ReactNode;
-}
-
-export const HistoryProvider: React.FC<HistoryProviderProps> = ({ children }) => {
+export const HistoryProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [history, setHistory] = useState<HistoryRecord[]>([]);
 
-  useEffect(() => {
-    try {
-      const storedHistory = localStorage.getItem("pontosBatidos");
-      if (storedHistory) {
-        const parsedHistory = JSON.parse(storedHistory);
-        if (Array.isArray(parsedHistory)) {
-          setHistory(parsedHistory);
-        } else {
-          console.warn("Unexpected data format in localStorage");
-          localStorage.removeItem("pontosBatidos");
-        }
-      }
-    } catch (e) {
-      console.error("Error reading from localStorage", e);
-      localStorage.removeItem("pontosBatidos");
-    }
-  }, []);
+  const addPonto = (record: HistoryRecord) => {
+    setHistory([...history, record]);
+  };
 
-  useEffect(() => {
-    try {
-      localStorage.setItem("pontosBatidos", JSON.stringify(history));
-    } catch (e) {
-      console.error("Error writing to localStorage", e);
-    }
-  }, [history]);
-
-  const addPonto = (newRecord: HistoryRecord, newHistory: HistoryRecord[] | null = null) => {
-    const updatedHistory = newHistory 
-      ? newHistory.slice(0, 4) 
-      : [newRecord, ...history].slice(0, 4);
-  
+  const updateHistory = (updatedHistory: HistoryRecord[]) => {
     setHistory(updatedHistory);
   };
 
   return (
-    <HistoryContext.Provider value={{ history, addPonto }}>
+    <HistoryContext.Provider value={{ history, addPonto, updateHistory }}>
       {children}
     </HistoryContext.Provider>
   );

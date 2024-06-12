@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
-import dayjs from 'dayjs';
-import { IoIosArrowBack } from "react-icons/io";
+import dayjs, { Dayjs } from 'dayjs';
+import { IoIosArrowBack } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import HistoryContext from '../../components/HistoryContext';
-import Calendario from "../../components/Calendario";
-import Header from "../../components/Header";
-import "../baterPonto/styleBP.css";
+import HistoryContext, { HistoryContextProps, HistoryRecord } from '../../components/HistoryContext';
+import Calendario from '../../components/Calendario';
+import Header from '../../components/Header';
+import '../baterPonto/styleBP.css';
 import { TextField } from '@mui/material';
-import { styled } from '@mui/material/styles'; 
+import { styled } from '@mui/material/styles';
 
 const CustomTextField = styled(TextField)(({ theme }) => ({
   '& .MuiInputBase-root': {
@@ -28,7 +28,7 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
     },
   },
   '& .MuiInputLabel-root': {
-    display: 'none', // Hide label
+    display: 'none',
   },
   '& .MuiSvgIcon-root': {
     color: '#620FC3',
@@ -36,55 +36,45 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
 }));
 
 function CorrigirPonto() {
-  const { history, addPonto } = useContext(HistoryContext);
-  const [selectedDay, setSelectedDay] = useState(dayjs());
-  const [showCorrigirPonto, setShowCorrigirPonto] = useState(false);
-  const [pontosDoDia, setPontosDoDia] = useState([]);
-  const [editingPonto, setEditingPonto] = useState(null);
-  const [showEdicao, setShowEdicao] = useState(false);
-  const [showCorrecaoPonto, setShowCorrecaoPonto] = useState(true);
-  const [showConfirmarEdicao, setShowConfirmarEdicao] = useState(false);
+  const { history, updateHistory } = useContext(HistoryContext) as HistoryContextProps;
+  const [selectedDay, setSelectedDay] = useState<Dayjs>(dayjs());
+  const [view, setView] = useState<'corrigir' | 'editar' | 'confirmar'>('corrigir');
+  const [pontosDoDia, setPontosDoDia] = useState<HistoryRecord[]>([]);
+  const [editingPonto, setEditingPonto] = useState<HistoryRecord | null>(null);
   const [novoHorario, setNovoHorario] = useState('');
 
   useEffect(() => {
-    if (selectedDay) {
-      const pontos = history.filter(
-        (ponto) => ponto.date === selectedDay.format("DD/MM/YYYY")
-      );
-      setPontosDoDia(pontos);
-      setTimeout(() => setShowCorrigirPonto(true), 300);
-    }
+    const pontos = history.filter(
+      (ponto) => ponto.date === selectedDay.format('DD/MM/YYYY')
+    );
+    setPontosDoDia(pontos);
   }, [selectedDay, history]);
 
-  const handleDayClick = (day) => {
-    setSelectedDay(day);
-    setTimeout(() => setShowCorrecaoPonto(true),300);
-    setShowEdicao(false);
-    setShowConfirmarEdicao(false);
+  const handleDayClick = (day: Dayjs | null) => {
+    if (day) {
+      setSelectedDay(day);
+      setView('corrigir');
+    }
   };
 
-  const corrigirPonto = (ponto) => {
+  const corrigirPonto = (ponto: HistoryRecord) => {
     setEditingPonto(ponto);
     setNovoHorario(ponto.time);
-    setShowEdicao(true);
-    setShowCorrecaoPonto(false);
+    setView('editar');
   };
 
   const handleSalvar = () => {
     if (editingPonto) {
       const novoPonto = { ...editingPonto, time: novoHorario };
-      const historyAtualizado = history.map(p => (p === editingPonto ? novoPonto : p));
-      addPonto(novoPonto, historyAtualizado); // Salva o novo ponto
-      setShowEdicao(false);
-      setShowConfirmarEdicao(true);
-      setShowCorrecaoPonto(false);
+      const historyAtualizado = history.map((p) => (p === editingPonto ? novoPonto : p));
+      updateHistory(historyAtualizado);
+      setView('confirmar');
     }
   };
 
   const handleCancelarEdicao = () => {
     setEditingPonto(null);
-    setShowEdicao(false);
-    setShowCorrecaoPonto(true);
+    setView('corrigir');
   };
 
   return (
@@ -98,10 +88,10 @@ function CorrigirPonto() {
       <div className="bodyCorrecao">
         <div className="calendario">
           <h2>2024</h2>
-          <Calendario onDayClick={handleDayClick} selectedDay={selectedDay} />
+          <Calendario onChange={handleDayClick} value={selectedDay} />
         </div>
 
-        {showCorrecaoPonto && (
+        {view === 'corrigir' && (
           <div className="validationBox" id="editarPonto">
             <h2>Corrigir Ponto</h2>
             <div className="pontosDoDia">
@@ -125,30 +115,38 @@ function CorrigirPonto() {
           </div>
         )}
 
-        {showEdicao && (
+        {view === 'editar' && (
           <div className="validationBox" id="pontoEditado">
             <h2>Corrigir Ponto</h2>
             <h3>Horário:</h3>
             <CustomTextField
               type="time"
-              id='caixaHora'
+              id="caixaHora"
               value={novoHorario}
               onChange={(e) => setNovoHorario(e.target.value)}
               InputLabelProps={{ shrink: true }}
             />
             <div className="botoesComponentesMenu">
-              <Button variant="contained" onClick={handleSalvar}>Salvar</Button>
-              <Button variant="outlined" onClick={handleCancelarEdicao}>Cancelar</Button>
+              <Button variant="contained" onClick={handleSalvar}>
+                Salvar
+              </Button>
+              <Button variant="outlined" onClick={handleCancelarEdicao}>
+                Cancelar
+              </Button>
             </div>
           </div>
         )}
 
-        {showConfirmarEdicao && (
+        {view === 'confirmar' && (
           <div className="validationBox">
             <h2>Ponto Corrigido!</h2>
             <h3 id="subtituloConfirmacao">Ponto Corrigido!</h3>
-            <p>Tudo pronto! Seu ponto da data {selectedDay.format('DD/MM/YYYY')} foi editado com sucesso para {novoHorario}!</p>
-            <p id="rodape">Confira as notificações para mais informações, e qualquer dúvida ou problema consulte o suporte.</p>
+            <p>
+              Tudo pronto! Seu ponto da data {selectedDay.format('DD/MM/YYYY')} foi editado com sucesso para {novoHorario}!
+            </p>
+            <p id="rodape">
+              Confira as notificações para mais informações, e qualquer dúvida ou problema consulte o suporte.
+            </p>
           </div>
         )}
       </div>

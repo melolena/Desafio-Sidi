@@ -1,11 +1,7 @@
-import './App.sass';
-import AppRoutes from './routes.tsx';
+import AppRoutes from './routes';
 
-function App(){
-
-    return(
-        <AppRoutes />
-    )
+function App() {
+  return <AppRoutes />;
 }
 
 export default App;

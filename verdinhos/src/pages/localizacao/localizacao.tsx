@@ -4,15 +4,15 @@ import Header from "../../components/Header";
 import { Link } from 'react-router-dom';
 import Mapa from "../../components/Mapa";
 import Calendario from "../../components/Calendario";
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import '../../pages/baterPonto/styleBP.css';
 import { Button } from "@mui/material";
 
 const Localizacao: React.FC = () => {
-    const [selectedDay, setSelectedDay] = useState(dayjs());
+    const [selectedDay, setSelectedDay] = useState<Dayjs>(dayjs());
     const [isConfirming, setIsConfirming] = useState(false);
     const [showConfirmationMessage, setShowConfirmationMessage] = useState(false);
-    const [currentTime, setCurrentTime] = useState(dayjs());
+    const [currentTime, setCurrentTime] = useState<Dayjs>(dayjs());
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -21,10 +21,12 @@ const Localizacao: React.FC = () => {
         return () => clearInterval(interval);
     }, []);
 
-    const handleDayClick = (day: dayjs.Dayjs) => {
-        setSelectedDay(day);
-       setTimeout(() => setIsConfirming(true), 300);
-        setShowConfirmationMessage(false);
+    const handleDayChange = (newValue: Dayjs | null) => {
+        if (newValue) {
+            setSelectedDay(newValue);
+            setTimeout(() => setIsConfirming(true), 300);
+            setShowConfirmationMessage(false);
+        }
     };
 
     const handleConfirmarLocalizacao = () => {
@@ -52,7 +54,7 @@ const Localizacao: React.FC = () => {
                 {!isConfirming && !showConfirmationMessage && (
                     <div className="calendario">
                         <h2>2024</h2>
-                        <Calendario onDayClick={handleDayClick} selectedDay={selectedDay} />
+                        <Calendario value={selectedDay} onChange={handleDayChange} />
                     </div>
                 )}
                 {isConfirming && !showConfirmationMessage && (
