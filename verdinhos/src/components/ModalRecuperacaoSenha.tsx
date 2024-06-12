@@ -14,7 +14,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   maxWidth: 500,
-  height: 250,
+  height: 300,
   bgcolor: '#ffffff',
   borderColor: '#ffffff',
   borderRadius: '20px',
@@ -23,11 +23,6 @@ const style = {
   fontFamily: 'Josefin Sans',
 };
 
-const breakpoints = {
-  mobile: 500, 
-  tablet: 900, 
-  se: 375,
-};
 
 const header = {
   display: 'flex',
@@ -42,20 +37,22 @@ const logoStyle = {
   maxWidth: '30%',
   alignSelf: 'start',
   marginRight: '0px',
-  objectFit: 'contain',
+
   
 };
 
 const titulo = {
   textAlign: 'center',
   margin: '10px',
-  marginLeft: '20px',
+  marginLeft: '5%',
+  fontSize: '36px',
 };
 
 const corpo = {
   textAlign: 'center',
   marginTop: '8px',
   color: '#000000',
+  fontSize: '18px',
 };
 
 const inserirEmail = {
@@ -63,10 +60,12 @@ const inserirEmail = {
   flexDirection: 'column',
   marginBottom: '30px',
   marginTop: '5px',
+  fontSize: '18px',
 };
 
 const labelEmail = {
   marginBottom: '10px',
+  fontSize: '18px',
 };
 
 const inputEmail = {
@@ -77,6 +76,7 @@ const inputEmail = {
   fontWeight: '20px',
   borderRadius: '10px',
   backgroundColor: '#D9D9D9',
+  fontSize: '18px',
 };
 
 const botoes = {
@@ -95,6 +95,7 @@ const botaoVoltar = {
   borderRadius: '10px',
   marginRight: '20px',
   textAlign: 'center',
+  fontSize: '16px'
 };
 
 const botaoEnviar = {
@@ -106,6 +107,7 @@ const botaoEnviar = {
   borderRadius: '10px',
   marginRight: '20px',
   textAlign: 'center',
+  fontSize: '16px'
 };
 
 const toggleEnviarHover = (event) => {

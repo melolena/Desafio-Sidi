@@ -96,7 +96,6 @@ body {
   font-size: 36px;
   margin: 10px 0;
   text-align: center;
-  font-weight: 400;
   margin: 0 0 15px;
   padding: 61px;
   border: 6px solid #620FC3;
@@ -124,11 +123,11 @@ body {
   color: black;
   border: 5px solid #3FD48F;
   border-radius: 10px;
-  width: 148px;
+  width: 120px;
   margin: 0 15px;
   text-transform: none;
   font-family: "Josefin Sans";
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .organizacaoBotoes button:hover {
@@ -185,12 +184,11 @@ body {
   font-size: 36px;
   margin: 3px 0;
   text-align: center;
-  font-weight: 700;
   margin: 10px;
 }
 
 .validationBox h3 {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
 }
 
@@ -199,11 +197,11 @@ body {
   color: black;
   border: 5px solid #3FD48F;
   border-radius: 10px;
-  width: 110px;
+  width: 120px;
   margin: 10px 15px 8px;
   text-transform: none;
   font-family: "Josefin Sans";
-  font-size: 17px;
+  font-size: 16px;
   padding: 0;
 }
 
@@ -232,6 +230,7 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 10;
+
 }
 
 .validationBox .pontosDoDia span {
@@ -246,7 +245,7 @@ body {
 p {
   font-size: 18px;
   margin: 0 2% 4%;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 #rodape {

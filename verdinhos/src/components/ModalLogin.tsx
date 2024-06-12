@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import logoSidi from '../assets/logo-sidi-nome.png';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { BiFontSize } from 'react-icons/bi';
 
 const style = {
   display: 'flex',
@@ -41,7 +42,8 @@ const logoStyle = {
 const titulo = {
   textAlign: 'center',
   margin: '10px',
-  marginLeft: '20%',
+  marginLeft: '5%',
+  fontSize: '36px',
 };
 
 const inserirEmail = {
@@ -56,6 +58,7 @@ const labelEmail = {
   display: 'flex',
   alignItems: 'center',
   marginBottom: '10px',
+  fontSize: '18px',
 };
 
 const inputEmail = {
@@ -66,6 +69,7 @@ const inputEmail = {
   fontWeight: '20px',
   borderRadius: '10px',
   backgroundColor: '#D9D9D9',
+  fontSize: '18px',
 };
 
 const botoes = {
@@ -84,6 +88,7 @@ const botaoVoltar = {
   borderRadius: '10px',
   marginRight: '20px',
   textAlign: 'center',
+  fontSize: '16px',
 };
 
 const botaoEnviar = {
@@ -95,13 +100,14 @@ const botaoEnviar = {
   borderRadius: '10px',
   marginRight: '20px',
   textAlign: 'center',
+  fontSize: '16px',
 };
 
 const senhaIcon = {
   position: 'absolute',
   top: '50%',
   right: '10px',
-  transform: 'translateY(-50%)',
+  transform: 'translateY(-40%)',
   cursor: 'pointer',
   fontSize: '20px',
 };
@@ -112,7 +118,7 @@ const esqueciSenha = {
   marginTop: '10px',
   color: '#620FC3', 
   fontFamily: 'Josefin Sans',
-  fontWeight: '20px',
+  fontSize: '16px',
   cursor: 'pointer',
 };
 
@@ -129,7 +135,7 @@ const toggleEnviarNormal = (event) => {
 const errorMessageStyle = {
   marginLeft: '10px',
   color: 'red',
-  fontSize: '12px',
+  fontSize: '16px',
 };
 
 function ModalRecuperacaoSenha({ isOpen, onClose }) {
