@@ -3,7 +3,6 @@ import Badge from '@mui/material/Badge';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar, PickersDay, pickersDayClasses, PickersDayProps } from '@mui/x-date-pickers';
-import { ptBR } from '@mui/x-date-pickers/locales';
 import { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
 import '../pages/baterPonto/styleBP.css';
