@@ -65,8 +65,8 @@ function Login() {
           <a href="https://www.facebook.com/login">
             <AiOutlineFacebook />
           </a>
-          <a href="https://www.google.com/gmail/">
-            <AiOutlineGoogle id="iconGoogle" />
+          <a href="https://www.google.com/gmail/"  id="iconGoogle" >
+            <AiOutlineGoogle/>
           </a>
           <a href="https://www.linkedin.com/login/pt">
             <AiOutlineLinkedin />
