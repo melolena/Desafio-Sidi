@@ -1,5 +1,5 @@
 import React from 'react';
-import { DateCalendar, PickersDay, PickersDayProps } from '@mui/x-date-pickers';
+import { DateCalendar} from '@mui/x-date-pickers';
 import { Dayjs } from 'dayjs';
 
 interface CalendarioProps {

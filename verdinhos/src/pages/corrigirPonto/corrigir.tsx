@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import  { useState, useEffect, useContext } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { IoIosArrowBack } from 'react-icons/io';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ import '../baterPonto/styleBP.css';
 import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-const CustomTextField = styled(TextField)(({ theme }) => ({
+const CustomTextField = styled(TextField)(({  }) => ({
   '& .MuiInputBase-root': {
     border: '3px solid #620FC3',
     backgroundColor: '#D9D9D9',
@@ -18,7 +18,7 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
     height: '40px',
     width: '300px',
     '& input': {
-      textAlign: 'center',
+      textAlign: 'center' as const, 
       fontSize: '16px',
       fontWeight: 'bold',
       color: '#000000',

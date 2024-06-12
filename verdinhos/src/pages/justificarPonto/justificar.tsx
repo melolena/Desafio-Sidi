@@ -4,13 +4,13 @@ import { IoIosArrowBack } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import Calendario from '../../components/Calendario';
-import HistoryContext, { HistoryContextProps, HistoryRecord } from '../../components/HistoryContext';
+import HistoryContext, { HistoryContextProps } from '../../components/HistoryContext';
 import { Button, TextField } from '@mui/material';
 import ButtonUpload from '../../components/ButtonUpload';
 import { styled } from '@mui/system';
 import '../baterPonto/styleBP.css';
 
-const CustomTextField = styled(TextField)(({ theme }) => ({
+const CustomTextField = styled(TextField)(({  }) => ({
   '& .MuiInputBase-root': {
     border: '3px solid #620FC3',
     backgroundColor: '#D9D9D9',

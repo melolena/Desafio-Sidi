@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { AiOutlineFacebook, AiOutlineGoogle, AiOutlineLinkedin, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import logoSidi from '../../assets/logo-sidi-nome.png';
 import { ModalLogin, RecuperacaoSenhaModal } from "../../components/ModalLogin";
@@ -22,7 +21,7 @@ function Login() {
   const [errors, setErrors] = useState<Errors>({});
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRecuperacaoModal, setShowRecuperacaoModal] = useState(false);
-  const navigate = useNavigate();
+
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
