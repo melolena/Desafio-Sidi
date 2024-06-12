@@ -12,7 +12,8 @@ interface ServerDayProps {
   day: Dayjs;
   outsideCurrentMonth: boolean;
   onDayClick: (day: Dayjs) => void;
-  [x: string]: any; // Permitir outras props
+  isFirstVisibleCell?: boolean;
+  isLastVisibleCell?: boolean;
 }
 
 const ServerDay: React.FC<ServerDayProps> = (props) => {
@@ -63,7 +64,7 @@ const Calendario: React.FC<CalendarioProps> = ({ onDayClick, selectedDay }) => {
       <DateCalendar
         value={selectedDay}
         onChange={onDayClick}
-        slots={{ day: ServerDay }}
+        slots={{ day: ServerDay as any }}
         slotProps={{ day: { onDayClick } }}
         sx={{
           backgroundColor: '#471D7C !important',

@@ -1,9 +1,24 @@
-import { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, ReactNode } from 'react';
 
-const HistoryContext = createContext();
+interface HistoryRecord {
+  tipo: string;
+  date: string;
+  time: string;
+}
 
-export const HistoryProvider = ({ children }) => {
-  const [history, setHistory] = useState([]);
+interface HistoryContextProps {
+  history: HistoryRecord[];
+  addPonto: (newRecord: HistoryRecord, newHistory?: HistoryRecord[] | null) => void;
+}
+
+const HistoryContext = createContext<HistoryContextProps | undefined>(undefined);
+
+interface HistoryProviderProps {
+  children: ReactNode;
+}
+
+export const HistoryProvider: React.FC<HistoryProviderProps> = ({ children }) => {
+  const [history, setHistory] = useState<HistoryRecord[]>([]);
 
   useEffect(() => {
     try {
@@ -31,7 +46,7 @@ export const HistoryProvider = ({ children }) => {
     }
   }, [history]);
 
-  const addPonto = (newRecord, newHistory = null) => {
+  const addPonto = (newRecord: HistoryRecord, newHistory: HistoryRecord[] | null = null) => {
     const updatedHistory = newHistory 
       ? newHistory.slice(0, 4) 
       : [newRecord, ...history].slice(0, 4);
