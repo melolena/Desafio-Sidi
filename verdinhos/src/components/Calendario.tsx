@@ -4,20 +4,27 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar, PickersDay, pickersDayClasses } from '@mui/x-date-pickers';
 import { ptBR } from '@mui/x-date-pickers/locales';
-import dayjs from 'dayjs';
+import { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
 import '../pages/baterPonto/styleBP.css';
 
-const ServerDay = (props) => {
+interface ServerDayProps {
+  day: Dayjs;
+  outsideCurrentMonth: boolean;
+  onDayClick: (day: Dayjs) => void;
+  [x: string]: any; // Permitir outras props
+}
+
+const ServerDay: React.FC<ServerDayProps> = (props) => {
   const { day, outsideCurrentMonth, onDayClick, ...other } = props;
 
   return (
     <Badge key={day.toString()} overlap="circular" badgeContent={undefined}>
-      <PickersDay 
-        {...other} 
-        outsideCurrentMonth={outsideCurrentMonth} 
-        day={day} 
-        onClick={() => onDayClick(day)} 
+      <PickersDay
+        {...other}
+        outsideCurrentMonth={outsideCurrentMonth}
+        day={day}
+        onClick={() => onDayClick(day)}
         sx={{
           backgroundColor: 'white !important',
           color: 'black !important',
@@ -35,17 +42,22 @@ const ServerDay = (props) => {
           [`&:hover`]: {
             backgroundColor: '#3FD48F !important',
             color: 'white !important',
-          }
+          },
         }}
       />
     </Badge>
   );
 };
 
-export default function Calendario({ onDayClick, selectedDay }) {
+interface CalendarioProps {
+  onDayClick: (day: Dayjs) => void;
+  selectedDay: Dayjs;
+}
+
+const Calendario: React.FC<CalendarioProps> = ({ onDayClick, selectedDay }) => {
   return (
-    <LocalizationProvider 
-      dateAdapter={AdapterDayjs} 
+    <LocalizationProvider
+      dateAdapter={AdapterDayjs}
       localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}
     >
       <DateCalendar
@@ -64,4 +76,6 @@ export default function Calendario({ onDayClick, selectedDay }) {
       />
     </LocalizationProvider>
   );
-}
+};
+
+export default Calendario;
