@@ -310,7 +310,8 @@ body .baterPonto #bodyBaterPonto .validationBox #horarioFinal button {
 
 .css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root,
 .css-5z7ikf-MuiButtonBase-root-MuiPickersDay-root,
-.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root, .css-23p0if-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected), .css-a78wou {
+.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root, .css-23p0if-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected), .css-a78wou, 
+button.MuiButtonBase-root.MuiPickersDay-dayWithMargin.css-a78wou {
   background-color: white !important;
   color: black !important;
   font-family: "Josefin Sans" !important;
