@@ -44,7 +44,7 @@ const titulo: CSSProperties = {
   textAlign: 'center',
   margin: '10px',
   marginLeft: '5%',
-  fontSize: '36px',
+  fontSize: '2rem',
 };
 
 const inserirEmail: CSSProperties = {

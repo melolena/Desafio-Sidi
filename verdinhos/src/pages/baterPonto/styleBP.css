@@ -367,7 +367,15 @@ button.MuiButtonBase-root.MuiPickersDay-dayWithMargin.css-a78wou {
     margin: 0 3px;
   }
 
-  #mapa{
+  #mapa {
     max-height: 70%;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 913px){
+  #mapa {
+    max-height: 70%;
+    width: 80%;
   }
 }
