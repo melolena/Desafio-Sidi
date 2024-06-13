@@ -1,4 +1,4 @@
-import  { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { IoIosArrowBack } from 'react-icons/io';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ import '../baterPonto/styleBP.css';
 import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-const CustomTextField = styled(TextField)(({  }) => ({
+const CustomTextField = styled(TextField)(({ }) => ({
   '& .MuiInputBase-root': {
     border: '3px solid #620FC3',
     backgroundColor: '#D9D9D9',
@@ -18,7 +18,7 @@ const CustomTextField = styled(TextField)(({  }) => ({
     height: '40px',
     width: '300px',
     '& input': {
-      textAlign: 'center' as const, 
+      textAlign: 'center' as const,
       fontSize: '16px',
       fontWeight: 'bold',
       color: '#000000',
@@ -42,13 +42,14 @@ function CorrigirPonto() {
   const [pontosDoDia, setPontosDoDia] = useState<HistoryRecord[]>([]);
   const [editingPonto, setEditingPonto] = useState<HistoryRecord | null>(null);
   const [novoHorario, setNovoHorario] = useState('');
+  const [limit, setLimit] = useState(4); // Define the limit here
 
   useEffect(() => {
     const pontos = history.filter(
       (ponto) => ponto.date === selectedDay.format('DD/MM/YYYY')
     );
-    setPontosDoDia(pontos);
-  }, [selectedDay, history]);
+    setPontosDoDia(pontos.slice(0, limit)); // Limit the history displayed
+  }, [selectedDay, history, limit]);
 
   const handleDayClick = (day: Dayjs | null) => {
     if (day) {

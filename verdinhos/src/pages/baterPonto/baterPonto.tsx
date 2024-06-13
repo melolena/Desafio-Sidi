@@ -1,4 +1,4 @@
-import  { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Calendario from "../../components/Calendario";
 import Header from "../../components/Header";
 import "./styleBP.css";
@@ -26,6 +26,7 @@ function BaterPonto() {
   const [showHistoryBox, setShowHistoryBox] = useState(false);
   const [selectedDay, setSelectedDay] = useState(dayjs());
   const [currentTime, setCurrentTime] = useState(dayjs());
+  const [limit, setLimit] = useState(4); // Define the limit here
 
   useEffect(() => {
     setTimeout(() => setShowBaterPonto(true), 300);
@@ -186,7 +187,7 @@ function BaterPonto() {
             {history.length > 0 ? (
               <div className="pontosDoDia">
                 <ul id="historyList">
-                  {history.map((record, index) => (
+                  {history.slice(0, limit).map((record, index) => (
                     <li key={index} className="dateHistory">
                       <span>{record.tipo} - </span>
                       <span>{record.date} - </span>
@@ -194,6 +195,11 @@ function BaterPonto() {
                     </li>
                   ))}
                 </ul>
+                {limit < history.length && (
+                  <Button variant="contained" onClick={() => setLimit(limit + 4)}>
+                    Carregar Mais
+                  </Button>
+                )}
               </div>
             ) : (
               <p>Nenhum ponto batido ainda.</p>
