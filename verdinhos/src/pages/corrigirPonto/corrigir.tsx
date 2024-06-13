@@ -42,7 +42,7 @@ function CorrigirPonto() {
   const [pontosDoDia, setPontosDoDia] = useState<HistoryRecord[]>([]);
   const [editingPonto, setEditingPonto] = useState<HistoryRecord | null>(null);
   const [novoHorario, setNovoHorario] = useState('');
-  const [limit, setLimit] = useState(4); // Define the limit here
+  const [limit] = useState(4); // Define the limit here
 
   useEffect(() => {
     const pontos = history.filter(
